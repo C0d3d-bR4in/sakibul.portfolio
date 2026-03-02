@@ -17,7 +17,7 @@ const SidebarCard = () => {
       </svg>
 
       {/* Avatar Container */}
-      <div className="relative z-10 w-60 h-72 mb-8">
+      <div className="relative z-10 w-56 h-64 mb-6">
         <div className="w-full h-full rounded-2xl overflow-hidden bg-gradient-to-br from-primary/30 via-primary/10 to-accent/20 flex items-center justify-center p-0 shadow-lg shadow-black/20">
           <img src="/ss.png" alt="Profile" className="w-full h-full object-cover relative z-10" />
         </div>
@@ -71,12 +71,12 @@ const SidebarCard = () => {
       </div>
 
       {/* Bio */}
-      <p className="text-muted-foreground text-base leading-relaxed mb-8 px-2 z-10 relative">
+      <p className="text-muted-foreground text-base leading-relaxed mb-6 px-2 z-10 relative">
         I am a Full-Stack Web Developer and Security Researcher with experience in creating scalable web applications and secure systems, focusing on high-performance backend architectures and modern frontend interfaces.
       </p>
 
       {/* Social links */}
-      <div className="flex gap-4 mb-6 z-10 relative">
+      <div className="flex gap-4 mb-0 z-10 relative">
         {socials.map(({ icon: Icon, href, label }) => (
           <a
             key={label}
