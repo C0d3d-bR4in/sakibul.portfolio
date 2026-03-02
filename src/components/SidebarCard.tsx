@@ -72,23 +72,22 @@ const SidebarCard = () => {
 
       {/* Bio */}
       <p className="text-muted-foreground text-base leading-relaxed mb-8 px-2 z-10 relative">
-        I am a Full-Stack Web Developer and Security Researcher with experience in creating scalable web applications and secure systems, focusing on high-performance backend architectures and modern frontend interfaces. I have developed production-grade applications in areas such as e-commerce, digital services, cybersecurity tools, and social platforms.
-      </p>
+        I am a Full-Stack Web Developer and Security Researcher with experience in creating scalable web applications and secure systems, focusing on high-performance backend architectures and modern frontend interfaces.
 
-      {/* Social links */}
-      <div className="flex gap-4 mb-6 z-10 relative">
-        {socials.map(({ icon: Icon, href, label }) => (
-          <a
-            key={label}
-            href={href}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="w-10 h-10 rounded-full flex items-center justify-center text-primary/80 hover:text-primary hover:bg-primary/10 transition-all duration-300"
-          >
-            <Icon className="w-5 h-5 stroke-[1.5]" />
-          </a>
-        ))}
-      </div>
+        {/* Social links */}
+        <div className="flex gap-4 mb-6 z-10 relative">
+          {socials.map(({ icon: Icon, href, label }) => (
+            <a
+              key={label}
+              href={href}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="w-10 h-10 rounded-full flex items-center justify-center text-primary/80 hover:text-primary hover:bg-primary/10 transition-all duration-300"
+            >
+              <Icon className="w-5 h-5 stroke-[1.5]" />
+            </a>
+          ))}
+        </div>
     </div>
   );
 };
