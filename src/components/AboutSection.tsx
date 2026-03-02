@@ -26,12 +26,11 @@ const AboutSection = () => {
             </div>
 
             <p className="text-foreground/90 leading-relaxed mb-4">
-              I'm a passionate full-stack developer with a love for creating beautiful, performant web applications.
-              With 5+ years of experience, I specialize in React, TypeScript, and modern web technologies.
+              I'm a passionate full-stack web developer with a love for creating beautiful, performant web applications.
+              With 1.5+ years of experience, I specialize in React, TypeScript, WordPress, WooCommerce and modern web technologies.
             </p>
             <p className="text-muted-foreground leading-relaxed mb-8">
-              When I'm not coding, you'll find me exploring new technologies, contributing to open-source projects,
-              or sharing knowledge through blog posts and talks.
+              When I'm not coding, you'll find me exploring new technologies, Researching on Cyber Security and Web application Security.
             </p>
 
             {/* Stats */}
