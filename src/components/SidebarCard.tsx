@@ -72,8 +72,7 @@ const SidebarCard = () => {
 
       {/* Bio */}
       <p className="text-muted-foreground text-base leading-relaxed mb-8 px-2 z-10 relative">
-        I am a Full-Stack Web Developer & Security Researcher with hands-on experience building scalable web applications, secure systems, and real-time platforms. My expertise lies in designing high-performance backend architectures, modern frontend interfaces, and implementing advanced security mechanisms.
-        Over the years, I have developed multiple production-grade applications across e-commerce, digital services, cybersecurity tools, and social platforms.
+        I am a Full-Stack Web Developer and Security Researcher with experience in creating scalable web applications and secure systems, focusing on high-performance backend architectures and modern frontend interfaces. I have developed production-grade applications in areas such as e-commerce, digital services, cybersecurity tools, and social platforms.
       </p>
 
       {/* Social links */}
