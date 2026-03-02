@@ -2,8 +2,8 @@ import { MapPin, Calendar, Coffee, Code2 } from "lucide-react";
 import { useScrollReveal } from "@/hooks/useScrollReveal";
 
 const stats = [
-  { icon: Calendar, label: "Years Experience", value: "5+" },
-  { icon: Code2, label: "Projects Done", value: "50+" },
+  { icon: Calendar, label: "Years Experience", value: "1.5+" },
+  { icon: Code2, label: "Projects Done", value: "5+" },
   { icon: Coffee, label: "Cups of Coffee", value: "∞" },
 ];
 

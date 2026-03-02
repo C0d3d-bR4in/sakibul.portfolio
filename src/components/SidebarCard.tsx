@@ -72,7 +72,8 @@ const SidebarCard = () => {
 
       {/* Bio */}
       <p className="text-muted-foreground text-base leading-relaxed mb-8 px-2 z-10 relative">
-        A Software Engineer who has developed countless innovative solutions.
+        I am a Full-Stack Web Developer & Security Researcher with hands-on experience building scalable web applications, secure systems, and real-time platforms. My expertise lies in designing high-performance backend architectures, modern frontend interfaces, and implementing advanced security mechanisms.
+        Over the years, I have developed multiple production-grade applications across e-commerce, digital services, cybersecurity tools, and social platforms.
       </p>
 
       {/* Social links */}

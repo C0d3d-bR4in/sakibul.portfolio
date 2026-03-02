@@ -40,11 +40,10 @@ const TimelineItem = ({ item, index }: { item: typeof experiences[0]; index: num
       {/* Card */}
       <div className={`ml-16 md:ml-0 md:w-[calc(50%-40px)] ${isLeft ? "md:mr-auto md:pr-0" : "md:ml-auto md:pl-0"}`}>
         <div
-          className={`glass rounded-2xl p-6 glow-border hover:glow-box transition-all duration-500 ${
-            isVisible
-              ? isLeft ? "animate-slide-left" : "animate-slide-right"
-              : "opacity-0"
-          }`}
+          className={`glass rounded-2xl p-6 glow-border hover:glow-box transition-all duration-500 ${isVisible
+            ? isLeft ? "animate-slide-left" : "animate-slide-right"
+            : "opacity-0"
+            }`}
         >
           <div className="flex items-center gap-2 text-primary font-mono text-sm mb-2">
             <Briefcase className="w-4 h-4" />
@@ -67,7 +66,7 @@ const ExperienceSection = () => {
       <div>
         <div ref={ref}>
           <h2 className={`text-4xl md:text-5xl font-bold mb-4 transition-all duration-700 ${isVisible ? "animate-slide-up" : "opacity-0"}`}>
-            <span className="gradient-text">Experience</span>
+            <span className="gradient-text">Career & Experience</span>
           </h2>
           <div className="w-20 h-1 bg-primary rounded-full mb-16" style={{ opacity: isVisible ? 1 : 0, transition: "opacity 0.6s 0.2s" }} />
         </div>
