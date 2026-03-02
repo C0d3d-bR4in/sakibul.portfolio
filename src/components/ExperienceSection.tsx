@@ -3,27 +3,27 @@ import { Briefcase } from "lucide-react";
 
 const experiences = [
   {
-    company: "TechCorp Inc.",
-    role: "Senior Frontend Developer",
-    period: "2022 – Present",
-    description: "Leading the frontend team in building scalable React applications. Architected a design system serving 20+ internal products.",
-  },
-  {
-    company: "StartupXYZ",
+    company: "Gaming & Digital Commerce Platform",
     role: "Full-Stack Developer",
-    period: "2020 – 2022",
-    description: "Built and shipped a SaaS platform from scratch using React, Node.js, and PostgreSQL. Grew the product to 10K+ users.",
+    period: "2025 – Present",
+    description: "Built and deployed a real-time digital product top-up system using React, Node.js, Supabase, and WebSocket. Integrated Piprapay and bKash APIs, developed admin dashboards, and implemented secure transaction handling with live inventory synchronization.",
   },
   {
-    company: "Digital Agency Co.",
+    company: "CipherVault & Blockchain Project",
+    role: "Security Researcher & System Architect",
+    period: "2025 – Present",
+    description: "Designed and developed an advanced encryption/decryption platform featuring steganography-based message hiding, dual-container secure file architecture, plausible deniability mode, and experimental cryptographic tools. Conducted malware behavior analysis and secure data workflow research. Also I Worked on Blockchain based DID projects.",
+  },
+  {
+    company: "WooCommerce & Marketplace Systems",
+    role: "E-commerce Developer",
+    period: "2023 – 2025",
+    description: "Developed and customized high-performance WooCommerce platforms with real-time inventory, payment gateway integrations, and optimized UI/UX.",
+  },
+  {
+    company: "Web & Interactive Applications",
     role: "Frontend Developer",
-    period: "2019 – 2020",
-    description: "Developed responsive web applications and interactive experiences for Fortune 500 clients.",
-  },
-  {
-    company: "Freelance",
-    role: "Web Developer",
-    period: "2018 – 2019",
+    period: "2022 – 2023",
     description: "Started my career building websites and web apps for local businesses and startups.",
   },
 ];
