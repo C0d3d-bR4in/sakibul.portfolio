@@ -38,16 +38,11 @@ const CustomCursor = () => {
       if (targetEl && targetEl.closest) {
         // Detect intention via tags since CSS cursor is hidden
         const isInteractive = !!targetEl.closest(
-          'a, button, [role="button"], [role="link"], input, select, textarea, .cursor-pointer'
-        );
-        const isText = !!targetEl.closest(
-          'p, h1, h2, h3, h4, h5, h6, li, blockquote'
+          'a, button, [role="button"], [role="link"], input, select, textarea, .cursor-pointer, h1, h3'
         );
 
         if (isInteractive) {
           setHoverType("interactive");
-        } else if (isText) {
-          setHoverType("text");
         } else {
           setHoverType("default");
         }
@@ -82,10 +77,10 @@ const CustomCursor = () => {
 
   if (!visible) return null;
 
-  const isSpecialHover = hoverType === "interactive" || hoverType === "text";
+  const isSpecialHover = hoverType === "interactive";
 
   // Sizes to offset standard top/left so the transform centers the elements at the mouse
-  const ringSize = isSpecialHover ? (clicking ? 40 : 50) : 0;
+  const ringSize = isSpecialHover ? (clicking ? 25 : 50) : 0;
   const ringOffset = ringSize / 2;
 
   return (
@@ -102,44 +97,52 @@ const CustomCursor = () => {
       >
         {/* Actual Ring Element (handles CSS animations/resizing) */}
         <div
-          className={`absolute rounded-full border-[3px] border-primary transition-[width,height,top,left] duration-300 ${isSpecialHover ? "cursor-pulse" : ""
+          className={`absolute rounded-full border-[2.5px] border-primary transition-[width,height,top,left] duration-300 ease-out ${isSpecialHover && !clicking ? "cursor-pulse" : ""
             }`}
           style={{
             width: ringSize,
             height: ringSize,
             top: -ringOffset,
             left: -ringOffset,
+            boxShadow: clicking ? "0 0 15px hsl(var(--primary)/0.8), inset 0 0 10px hsl(var(--primary)/0.5)" : "none",
           }}
         />
       </div>
 
-      {/* 2. Main Arrow Pointer */}
+      {/* 2. Main Arrow Pointer & Inner Dot */}
       <div
         ref={dotRef}
-        className={`fixed pointer-events-none z-[9999] transition-[opacity,transform] duration-300 ease-out origin-top-left will-change-transform ${isSpecialHover ? "scale-0 opacity-0" : "scale-100 opacity-100"
-          }`}
+        className="fixed pointer-events-none z-[9999] will-change-transform origin-top-left"
         style={{
           top: 0,
           left: 0,
         }}
       >
-        <svg
-          width="24"
-          height="24"
-          viewBox="0 0 24 24"
-          fill="none"
-          xmlns="http://www.w3.org/2000/svg"
-          className="filter drop-shadow-[0_0_8px_hsl(var(--primary)/0.8)]"
-          style={{ transform: clicking ? "scale(0.85)" : "scale(1)", transition: "transform 0.1s" }}
-        >
-          <path
-            d="M0 0L14 10L8 12L5 20L0 0Z"
-            stroke="hsl(var(--primary))"
-            strokeWidth="2.5"
-            strokeLinejoin="round"
-            className="fill-background"
-          />
-        </svg>
+        {/* Main Arrow */}
+        <div className={`absolute top-0 left-0 transition-all duration-300 ease-out origin-top-left ${isSpecialHover ? "scale-0 opacity-0" : "scale-100 opacity-100"}`}>
+          <svg
+            width="24"
+            height="24"
+            viewBox="0 0 24 24"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+            className="filter drop-shadow-[0_0_8px_hsl(var(--primary)/0.8)]"
+            style={{ transform: clicking ? "scale(0.85)" : "scale(1)", transition: "transform 0.1s" }}
+          >
+            <path
+              d="M0 0L14 10L8 12L5 20L0 0Z"
+              stroke="hsl(var(--primary))"
+              strokeWidth="2.5"
+              strokeLinejoin="round"
+              className="fill-background"
+            />
+          </svg>
+        </div>
+
+        {/* Inner Solid Dot for Interactive Hover */}
+        <div
+          className={`absolute top-[-4px] left-[-4px] w-2 h-2 rounded-full bg-primary shadow-[0_0_10px_hsl(var(--primary))] transition-all duration-300 ease-out origin-center ${isSpecialHover ? "scale-100 opacity-100" : "scale-0 opacity-0"}`}
+        />
       </div>
     </>
   );

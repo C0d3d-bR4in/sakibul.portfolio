@@ -22,7 +22,7 @@ const AboutSection = () => {
           <div className="glass rounded-2xl p-8 glow-border">
             <div className="flex items-center gap-2 text-primary mb-4">
               <MapPin className="w-4 h-4" />
-              <span className="text-sm font-mono">San Francisco, CA</span>
+              <span className="text-sm font-mono">Savar, Dhaka, Bangladesh</span>
             </div>
 
             <p className="text-foreground/90 leading-relaxed mb-4">
