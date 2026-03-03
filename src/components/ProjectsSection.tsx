@@ -1,6 +1,7 @@
 import { ExternalLink, Github, Play } from "lucide-react";
 import { useScrollReveal } from "@/hooks/useScrollReveal";
 import { useState, useRef } from "react";
+import * as si from 'simple-icons';
 
 const projects = [
   {
@@ -129,11 +130,79 @@ const ProjectCard = ({ project, index }: { project: typeof projects[0]; index: n
 
           {/* Tags */}
           <div className="flex flex-wrap gap-2 mb-6">
-            {project.tags.map((tag) => (
-              <span key={tag} className="px-3 py-1 rounded-full text-xs font-mono bg-primary/10 text-primary border border-primary/20">
-                {tag}
-              </span>
-            ))}
+            {project.tags.map((tag) => {
+              const getTagStyle = (t: string) => {
+                const brandColors: Record<string, { hex: string; iconProp?: string; customSvg?: React.ReactNode; viewBox?: string }> = {
+                  'react': { hex: '#61DAFB', iconProp: 'siReact' },
+                  'node.js': { hex: '#339933', iconProp: 'siNodedotjs' },
+                  'supabase': { hex: '#3ECF8E', iconProp: 'siSupabase' },
+                  'next.js': { hex: '#000000', iconProp: 'siNextdotjs' },
+                  'firebase': { hex: '#FFCA28', iconProp: 'siFirebase' },
+                  'tailwind css': { hex: '#06B6D4', iconProp: 'siTailwindcss' },
+                  'typescript': { hex: '#3178C6', iconProp: 'siTypescript' },
+                  'vite': { hex: '#646CFF', iconProp: 'siVite' },
+                  'wordpress': { hex: '#21759B', iconProp: 'siWordpress' },
+                  'woocommerce': { hex: '#96588A', iconProp: 'siWoocommerce' },
+                  'bkash api': {
+                    hex: '#e2136e',
+                    viewBox: '0 0 48 48',
+                    customSvg: (
+                      <>
+                        <path fill="none" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M22.981 8.632s-4.163 14.704-3.809 14.704s16.476 2.923 16.476 2.923Z" />
+                        <path fill="none" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M22.981 8.632L6.329 6.152l12.843 17.184l2.215 10.186l14.261-7.263l3.72-8.814l-8.975 1.501m7.536 1.909H43l-3.632-3.41" />
+                        <path fill="none" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="m21.387 33.522l.354 1.905l-8.016 6.421l5.447-18.512m16.476 2.923l-.531 2.879l-12.269 3.64M8.455 8.997H5L16.044 19.15" />
+                      </>
+                    )
+                  },
+                  'elementor': { hex: '#D23953', iconProp: 'siElementor' },
+                  'websocket': { hex: '#f0db4f' },
+                  'wpbakery page builder': { hex: '#0091CA' },
+                };
+
+                const data = brandColors[t.toLowerCase()];
+                return data || { hex: 'hsl(var(--primary))' };
+              };
+
+              const tagData = getTagStyle(tag);
+              const hex = tagData.hex;
+
+              // We need to dynamically get the icon path if it exists
+              const iconPath = tagData.iconProp ? (si as any)[tagData.iconProp]?.path : null;
+
+              const hasIcon = iconPath || tagData.customSvg;
+
+              return (
+                <div
+                  key={tag}
+                  title={tag}
+                  className="w-8 h-8 rounded-full flex items-center justify-center border backdrop-blur-sm transition-all duration-300 hover:scale-110 cursor-help"
+                  style={{
+                    backgroundColor: hex.startsWith('hsl') ? `hsl(var(--primary) / 0.15)` : `${hex}15`,
+                    borderColor: hex.startsWith('hsl') ? `hsl(var(--primary) / 0.4)` : `${hex}40`,
+                    boxShadow: hex.startsWith('hsl') ? `0 0 10px hsl(var(--primary) / 0.2)` : `0 0 10px ${hex}20`
+                  }}
+                >
+                  {hasIcon ? (
+                    <svg
+                      role="img"
+                      viewBox={tagData.viewBox || "0 0 24 24"}
+                      className="w-4 h-4"
+                      style={{
+                        fill: tagData.customSvg ? 'none' : (hex === '#000000' ? '#ffffff' : hex),
+                        color: hex === '#000000' ? '#ffffff' : hex
+                      }}
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      {tagData.customSvg ? tagData.customSvg : <path d={iconPath} />}
+                    </svg>
+                  ) : (
+                    <span className="text-[10px] font-bold" style={{ color: hex.startsWith('hsl') ? 'hsl(var(--primary))' : hex }}>
+                      {tag.substring(0, 1).toUpperCase()}
+                    </span>
+                  )}
+                </div>
+              );
+            })}
           </div>
 
           {/* Actions */}
