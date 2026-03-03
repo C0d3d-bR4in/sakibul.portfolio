@@ -33,25 +33,50 @@ const TimelineItem = ({ item, index }: { item: typeof experiences[0]; index: num
   const isLeft = index % 2 === 0;
 
   return (
-    <div ref={ref} className="relative flex md:items-center mb-12 last:mb-0">
-      {/* Timeline dot */}
-      <div className="absolute left-6 md:left-1/2 md:-translate-x-1/2 w-4 h-4 rounded-full bg-primary z-10 glow-box" />
+    <div
+      ref={ref}
+      className={`relative flex items-center justify-between mb-16 last:mb-0 w-full transition-all duration-1000 ${isVisible
+          ? "opacity-100 translate-y-0"
+          : "opacity-0 translate-y-16"
+        }`}
+      style={{ transitionDelay: `${index * 0.15}s` }}
+    >
+      {/* Timeline central neon dot */}
+      <div className="absolute left-6 md:left-1/2 md:-translate-x-1/2 w-4 h-4 rounded-full bg-primary z-20 shadow-[0_0_15px_hsl(var(--primary))] ring-4 ring-background transition-transform duration-500 hover:scale-150" />
 
-      {/* Card */}
-      <div className={`ml-16 md:ml-0 md:w-[calc(50%-40px)] ${isLeft ? "md:mr-auto md:pr-0" : "md:ml-auto md:pl-0"}`}>
+      {/* Connection Line to Dot (Desktop only) */}
+      <div className={`hidden md:block absolute top-1/2 -translate-y-1/2 h-[2px] bg-gradient-to-r ${isLeft ? "from-transparent to-primary/50 right-1/2" : "from-primary/50 to-transparent left-1/2"} w-8 z-0`} />
+
+      {/* Card Wrapper */}
+      <div className={`w-full pl-16 md:pl-0 md:w-[calc(50%-3rem)] ${isLeft ? "md:mr-auto" : "md:ml-auto"}`}>
         <div
-          className={`glass rounded-2xl p-6 glow-border hover:glow-box transition-all duration-500 ${isVisible
-            ? isLeft ? "animate-slide-left" : "animate-slide-right"
-            : "opacity-0"
-            }`}
+          className="group relative glass rounded-2xl p-8 glow-border overflow-hidden transition-all duration-500 hover:-translate-y-2 hover:shadow-[0_0_30px_hsl(var(--primary)/0.15)] cursor-help"
         >
-          <div className="flex items-center gap-2 text-primary font-mono text-sm mb-2">
-            <Briefcase className="w-4 h-4" />
-            {item.period}
+          {/* Animated Background Gradient Layer */}
+          <div className="absolute inset-0 bg-gradient-to-br from-primary/10 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none" />
+
+          <div className="relative z-10">
+            {/* Header / Period Badge */}
+            <div className="inline-flex items-center gap-2 text-primary font-mono text-sm mb-4 px-3 py-1.5 rounded-lg bg-primary/10 border border-primary/20 backdrop-blur-sm transition-transform duration-300 group-hover:scale-105 origin-left">
+              <Briefcase className="w-4 h-4" />
+              {item.period}
+            </div>
+
+            <h3 className="text-xl md:text-2xl font-bold text-foreground mb-2 group-hover:text-primary transition-colors duration-300">
+              {item.role}
+            </h3>
+
+            <p className="text-primary/90 font-medium mb-4 text-base tracking-wide">
+              {item.company}
+            </p>
+
+            <p className="text-muted-foreground text-sm leading-relaxed">
+              {item.description}
+            </p>
           </div>
-          <h3 className="text-xl font-bold text-foreground mb-1">{item.role}</h3>
-          <p className="text-primary/80 font-medium mb-3">{item.company}</p>
-          <p className="text-muted-foreground text-sm leading-relaxed">{item.description}</p>
+
+          {/* Subtle accent line at the bottom that expands on hover */}
+          <div className="absolute bottom-0 left-0 h-1 bg-gradient-to-r from-primary to-accent w-0 group-hover:w-full transition-all duration-500 ease-in-out" />
         </div>
       </div>
     </div>
@@ -62,19 +87,22 @@ const ExperienceSection = () => {
   const { ref, isVisible } = useScrollReveal();
 
   return (
-    <section id="experience" className="py-16 scroll-mt-24 relative">
-      <div>
+    <section id="experience" className="py-20 scroll-mt-24 relative overflow-hidden">
+      {/* Background radial glow */}
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-[radial-gradient(circle_at_center,hsl(var(--primary)/0.05)_0%,transparent_60%)] pointer-events-none blur-3xl z-0" />
+
+      <div className="relative z-10 w-full max-w-6xl mx-auto px-4 sm:px-8">
         <div ref={ref}>
           <h2 className={`text-4xl md:text-5xl font-bold mb-4 transition-all duration-700 ${isVisible ? "animate-slide-up" : "opacity-0"}`}>
             <span className="gradient-text">Career & Experience</span>
           </h2>
-          <div className="w-20 h-1 bg-primary rounded-full mb-16" style={{ opacity: isVisible ? 1 : 0, transition: "opacity 0.6s 0.2s" }} />
+          <div className="w-24 h-1 bg-gradient-to-r from-[#00d2ff] to-[#3a7bd5] rounded-full mb-20" style={{ opacity: isVisible ? 1 : 0, transition: "opacity 0.6s 0.2s" }} />
         </div>
 
-        {/* Timeline */}
-        <div className="relative">
-          {/* Vertical line */}
-          <div className="absolute left-[1.85rem] md:left-1/2 md:-translate-x-px top-0 bottom-0 w-0.5 bg-gradient-to-b from-primary/60 via-primary/30 to-transparent" />
+        {/* Timeline Container */}
+        <div className="relative w-full">
+          {/* Vertical Glowing Line */}
+          <div className="absolute left-[31px] md:left-1/2 md:-translate-x-[1px] top-4 bottom-4 w-[2px] bg-gradient-to-b from-transparent via-primary/50 to-transparent shadow-[0_0_10px_hsl(var(--primary)/0.4)] z-0" />
 
           {experiences.map((item, i) => (
             <TimelineItem key={i} item={item} index={i} />
