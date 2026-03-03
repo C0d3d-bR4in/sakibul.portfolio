@@ -7,10 +7,10 @@ const projects = [
   {
     title: "Gaming & Digital Product Topup",
     description: "A full-stack e-commerce solution with real-time inventory, Stripe payments, and an admin dashboard.",
-    tags: ["React", "Node.js", "Supabase", "WebSocket", "Bkash API"],
+    tags: ["React", "Node.js", "Supabase", "TypeScript", "Vite", "Bkash API"],
     color: "from-cyan-500/20 to-blue-600/20",
     video: "/videos/project-1.webm",
-    thumbnail: "/images/project-1-thumb.png",
+    thumbnail: "/images/image.png",
     liveLink: "http://bdzone.store/",
     sourceLink: "#",
   },
@@ -154,6 +154,10 @@ const ProjectCard = ({ project, index }: { project: typeof projects[0]; index: n
                       </>
                     )
                   },
+                  'shadcn-ui': {
+                    hex: '#000000',
+                    customSvg: <path d="M22.219 11.784 11.784 22.219c-.407.407-.407 1.068 0 1.476.407.407 1.068.407 1.476 0L23.695 13.26c.407-.408.407-1.069 0-1.476-.408-.407-1.069-.407-1.476 0ZM20.132.305.305 20.132c-.407.407-.407 1.068 0 1.476.408.407 1.069.407 1.476 0L21.608 1.781c.407-.407.407-1.068 0-1.476-.408-.407-1.069-.407-1.476 0Z" />
+                  },
                   'elementor': { hex: '#D23953', iconProp: 'siElementor' },
                   'websocket': { hex: '#f0db4f' },
                   'wpbakery page builder': { hex: '#0091CA' },
@@ -188,7 +192,7 @@ const ProjectCard = ({ project, index }: { project: typeof projects[0]; index: n
                       viewBox={tagData.viewBox || "0 0 24 24"}
                       className="w-4 h-4"
                       style={{
-                        fill: tagData.customSvg ? 'none' : (hex === '#000000' ? '#ffffff' : hex),
+                        fill: tagData.customSvg ? 'currentColor' : (hex === '#000000' ? '#ffffff' : hex),
                         color: hex === '#000000' ? '#ffffff' : hex
                       }}
                       xmlns="http://www.w3.org/2000/svg"
@@ -206,12 +210,25 @@ const ProjectCard = ({ project, index }: { project: typeof projects[0]; index: n
           </div>
 
           {/* Actions */}
-          <div className="flex gap-3">
-            <a href={project.liveLink} target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 px-4 py-2 rounded-lg bg-primary/10 text-primary text-sm font-medium hover:bg-primary/20 transition-colors">
-              <ExternalLink className="w-4 h-4" /> Live Demo
+          <div className="flex gap-4 mt-auto">
+            <a
+              href={project.liveLink}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="group relative inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-background/50 backdrop-blur-sm text-primary text-sm font-semibold overflow-hidden transition-all duration-300 hover:scale-[1.03] border border-primary/30 hover:border-primary/80 hover:shadow-[0_0_15px_hsla(var(--primary)/0.3)]"
+            >
+              <div className="absolute inset-0 bg-primary/10 translate-y-[100%] group-hover:translate-y-0 transition-transform duration-300 ease-in-out" />
+              <ExternalLink className="w-4 h-4 relative z-10 transition-transform duration-300 group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
+              <span className="relative z-10">Live Demo</span>
             </a>
-            <a href={project.sourceLink} target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 px-4 py-2 rounded-lg bg-secondary text-muted-foreground text-sm font-medium hover:text-foreground transition-colors">
-              <Github className="w-4 h-4" /> Source
+            <a
+              href={project.sourceLink}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="group relative inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-secondary/40 backdrop-blur-sm text-muted-foreground text-sm font-medium border border-border/40 hover:border-border hover:text-foreground hover:bg-secondary/80 transition-all duration-300 hover:scale-[1.03]"
+            >
+              <Github className="w-4 h-4 transition-transform duration-300 group-hover:rotate-12" />
+              <span className="relative z-10">Source</span>
             </a>
           </div>
         </div>
