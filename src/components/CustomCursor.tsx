@@ -6,7 +6,7 @@ const CustomCursor = () => {
 
   const [visible, setVisible] = useState(false);
   const [clicking, setClicking] = useState(false);
-  const [hoverType, setHoverType] = useState<"default" | "interactive" | "text">("default");
+  const [hoverType, setHoverType] = useState<"default" | "interactive" | "text" | "tech-icon">("default");
 
   useEffect(() => {
     let animId: number;
@@ -37,11 +37,14 @@ const CustomCursor = () => {
       const targetEl = e.target as HTMLElement;
       if (targetEl && targetEl.closest) {
         // Detect intention via tags since CSS cursor is hidden
+        const isTechIcon = !!targetEl.closest('.tech-icon');
         const isInteractive = !!targetEl.closest(
           'a, button, [role="button"], [role="link"], input, select, textarea, .cursor-pointer, h1, h3'
         );
 
-        if (isInteractive) {
+        if (isTechIcon) {
+          setHoverType("tech-icon");
+        } else if (isInteractive) {
           setHoverType("interactive");
         } else {
           setHoverType("default");
@@ -77,10 +80,10 @@ const CustomCursor = () => {
 
   if (!visible) return null;
 
-  const isSpecialHover = hoverType === "interactive";
+  const isSpecialHover = hoverType === "interactive" || (hoverType === "tech-icon" && clicking);
 
   // Sizes to offset standard top/left so the transform centers the elements at the mouse
-  const ringSize = isSpecialHover ? (clicking ? 25 : 50) : 0;
+  const ringSize = isSpecialHover ? (hoverType === "tech-icon" ? 50 : (clicking ? 25 : 50)) : 0;
   const ringOffset = ringSize / 2;
 
   return (

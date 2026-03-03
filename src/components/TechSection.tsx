@@ -38,7 +38,7 @@ const TechIcon = ({ item, index }: { item: typeof techItems[0]; index: number })
       <div
         onMouseEnter={() => setHovered(true)}
         onMouseLeave={() => setHovered(false)}
-        className="group relative flex flex-col items-center justify-center gap-2 w-20 h-24 sm:w-24 sm:h-28 rounded-2xl border transition-all duration-300 cursor-pointer backdrop-blur-sm"
+        className="tech-icon group relative flex flex-col items-center justify-center gap-2 w-20 h-24 sm:w-24 sm:h-28 rounded-2xl border transition-all duration-300 cursor-pointer backdrop-blur-sm"
         style={{
           borderColor: hovered ? item.color + "60" : "hsl(240 10% 20% / 0.4)",
           backgroundColor: hovered ? item.color + "15" : "hsl(240 15% 10% / 0.5)",
