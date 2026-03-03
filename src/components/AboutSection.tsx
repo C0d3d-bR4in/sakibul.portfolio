@@ -1,4 +1,4 @@
-import { MapPin, Calendar, Coffee, Code2 } from "lucide-react";
+import { Calendar, Coffee, Code2 } from "lucide-react";
 import { useScrollReveal } from "@/hooks/useScrollReveal";
 
 const stats = [
@@ -19,30 +19,30 @@ const AboutSection = () => {
         <div className="w-20 h-1 bg-primary rounded-full mb-16" style={{ opacity: isVisible ? 1 : 0, transition: "opacity 0.6s 0.2s" }} />
 
         <div className={`transition-all duration-700 delay-300 ${isVisible ? "animate-slide-up" : "opacity-0"}`}>
-          <div className="glass rounded-2xl p-8 glow-border">
-            <div className="flex items-center gap-2 text-primary mb-4">
-              <MapPin className="w-4 h-4" />
-              <span className="text-sm font-mono">Savar, Dhaka, Bangladesh</span>
+          <div className="glass rounded-[32px] p-8 lg:p-10 glow-border bg-card/40 border-border/40 shadow-xl shadow-black/40 min-h-full">
+            <h3 className="text-xl md:text-2xl font-semibold mb-6 text-foreground/90">Background</h3>
+
+            <div className="space-y-6 mb-12">
+              <p className="border-l-2 border-primary/40 pl-5 py-1 text-foreground/80 leading-relaxed text-lg relative hover:border-l-4 transform transition-all">
+                I'm a passionate full-stack web developer with a love for creating beautiful, performant web applications.
+                With 1.5+ years of experience, I specialize in React, TypeScript, WordPress, WooCommerce and modern web technologies.
+              </p>
+              <p className="border-l-2 border-primary/40 pl-5 py-1 text-foreground/60 leading-relaxed text-base relative hover:border-l-4 transform transition-all">
+                When I'm not coding, you'll find me exploring new technologies, Researching on Cyber Security and Web application Security.
+              </p>
             </div>
 
-            <p className="text-foreground/90 leading-relaxed mb-4">
-              I'm a passionate full-stack web developer with a love for creating beautiful, performant web applications.
-              With 1.5+ years of experience, I specialize in React, TypeScript, WordPress, WooCommerce and modern web technologies.
-            </p>
-            <p className="text-muted-foreground leading-relaxed mb-8">
-              When I'm not coding, you'll find me exploring new technologies, Researching on Cyber Security and Web application Security.
-            </p>
-
             {/* Stats */}
-            <div className="grid grid-cols-3 gap-4">
+            <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
               {stats.map(({ icon: Icon, label, value }) => (
-                <div key={label} className="text-center p-3 rounded-xl bg-secondary/50 hover:bg-primary/10 transition-colors group">
-                  <Icon className="w-5 h-5 mx-auto mb-2 text-muted-foreground group-hover:text-primary transition-colors" />
-                  <div className="text-2xl font-bold text-foreground">{value}</div>
-                  <div className="text-xs text-muted-foreground">{label}</div>
+                <div key={label} className="text-center p-6 rounded-2xl bg-secondary/30 border border-border/30 hover:bg-primary/10 hover:border-primary/30 transition-all group shadow-sm bg-blend-overlay">
+                  <Icon className="w-6 h-6 mx-auto mb-3 text-foreground/50 group-hover:text-primary transition-colors duration-300" />
+                  <div className="text-3xl font-bold text-foreground mb-1">{value}</div>
+                  <div className="text-sm font-medium text-foreground/60">{label}</div>
                 </div>
               ))}
             </div>
+
           </div>
         </div>
       </div>

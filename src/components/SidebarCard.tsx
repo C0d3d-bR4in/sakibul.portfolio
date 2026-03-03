@@ -9,86 +9,50 @@ const socials = [
 
 const SidebarCard = () => {
   return (
-    <div className="glass rounded-2xl glow-border p-8 flex flex-col items-center text-center relative overflow-hidden">
-
-      {/* Top Left Circle Background Arc */}
-      <svg className="absolute -top-[10%] -left-[10%] w-[60%] h-[30%] text-primary/60 pointer-events-none z-0" viewBox="0 0 100 100" fill="none" overflow="visible">
-        <circle cx="0" cy="0" r="80" stroke="currentColor" strokeWidth="1.5" strokeDasharray="5 7" />
-      </svg>
+    <div className="glass rounded-[32px] p-6 lg:p-8 flex flex-col items-center text-center relative overflow-hidden bg-card/40 border-border/40 shadow-xl shadow-black/40">
 
       {/* Avatar Container */}
-      <div className="relative z-10 w-56 h-64 mb-6">
-        <div className="w-full h-full rounded-2xl overflow-hidden bg-gradient-to-br from-primary/30 via-primary/10 to-accent/20 flex items-center justify-center p-0 shadow-lg shadow-black/20">
-          <img src="/ss.png" alt="Profile" className="w-full h-full object-cover relative z-10" />
-        </div>
+      <div className="w-full relative rounded-2xl overflow-hidden aspect-[4/5] max-h-[300px] mb-6 flex items-center justify-center p-0 shadow-lg shadow-black/20 group">
+        <img src="/ss.jpeg" alt="Profile Details" className="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-110 relative z-0" />
       </div>
 
-      {/* Name */}
-      <h2 className="text-2xl font-bold text-foreground mb-2 mt-0 z-10 relative">
+      {/* Hero Text */}
+      <h2 className="text-[28px] font-extrabold text-white mb-2 tracking-tight mt-0">
         MD. Sakibul Islam Sheikh
       </h2>
 
       {/* Role */}
-      <p className="text-muted-foreground text-sm z-10 relative mb-4">
-        Full Stack Web Developer & Security Reseracher
+      <p className="text-white/80 font-medium text-base mb-1">
+        Full Stack Web Developer & Security Researcher
       </p>
 
-      {/* Connectors & Fire Icon */}
-      <div className="relative z-0 flex items-center justify-center flex-col mb-4">
-
-        <div className="relative z-10 w-9 h-9 flex items-center justify-center mb-2">
-
-          {/* SVG Connector UP (from center to top-left across image right-edge) */}
-          <svg className="absolute bottom-1/2 left-1/2 w-0 h-0 text-primary/60 pointer-events-none" overflow="visible" fill="none">
-            {/* Coordinates originating from center of flame to loop around profile picture */}
-            <path d="M 0,0 C 120,-100 180,-300 -60,-400" stroke="currentColor" strokeWidth="2" strokeDasharray="6 8" strokeLinecap="round" />
-          </svg>
-
-          {/* SVG Connector DOWN (from center to bottom-left) */}
-          <svg className="absolute top-1/2 right-1/2 w-0 h-0 text-primary/60 pointer-events-none" overflow="visible" fill="none">
-            <path d="M 0,0 C -30,60 -80,90 -200,100" stroke="currentColor" strokeWidth="2" strokeDasharray="6 8" strokeLinecap="round" />
-          </svg>
-
-          {/* Bangladesh flag section styles matching reference */}
-          <div className="w-full h-full rounded-full bg-transparent flex items-center justify-center relative z-10 flex-col mt-4">
-            {/* Text with SVG inline */}
-            <div className="flex items-center gap-2 mb-2 whitespace-nowrap">
-              <span className="text-muted-foreground font-medium">I am Proudly a </span>
-              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" className="w-5 h-5 rounded-sm shadow-sm flex-shrink-0">
-                {/* Background square */}
-                <rect width="512" height="512" fill="#006a4e" />
-                {/* Circle offset slightly left to account for squared aspect ratio keeping it visually centered */}
-                <circle cx="230" cy="256" r="160" fill="#f42a41" />
-              </svg>
-            </div>
-
-            {/* Email */}
-            <a href="mailto:mail2sakibul@gmail.com" className="text-primary hover:text-primary/80 transition-colors font-medium">
-              mail2sakibul@gmail.com
-            </a>
-          </div>
-        </div>
-      </div>
-
-      {/* Bio */}
-      <p className="text-muted-foreground text-base leading-relaxed mb-6 px-2 z-10 relative">
-        I am a Full-Stack Web Developer and Security Researcher with experience in creating scalable web applications and secure systems, focusing on high-performance backend architectures and modern frontend interfaces.
+      {/* Location */}
+      <p className="text-white/60 text-sm mb-8 font-medium">
+        Savar, Dhaka, Bangladesh
       </p>
 
-      {/* Social links */}
-      <div className="flex gap-4 mb-0 z-10 relative">
+      {/* Clean Social links */}
+      <div className="flex gap-3 mb-8">
         {socials.map(({ icon: Icon, href, label }) => (
           <a
             key={label}
             href={href}
             target="_blank"
             rel="noopener noreferrer"
-            className="w-10 h-10 rounded-full flex items-center justify-center text-primary/80 hover:text-primary hover:bg-primary/10 transition-all duration-300"
+            className="w-10 h-10 rounded-full border border-white/10 flex items-center justify-center text-white/70 hover:text-white hover:bg-white/10 hover:border-white/20 transition-all duration-300 backdrop-blur-sm shadow-sm"
           >
-            <Icon className="w-5 h-5 stroke-[1.5]" />
+            <Icon className="w-4 h-4 stroke-[2]" />
           </a>
         ))}
       </div>
+
+      {/* Let's Talk Button */}
+      <a
+        href="mailto:mail2sakibul@gmail.com"
+        className="w-full py-3.5 rounded-xl bg-gradient-to-r from-primary to-blue-500 text-white font-semibold text-sm hover:opacity-90 hover:shadow-[0_0_20px_hsl(var(--primary)/0.4)] transition-all duration-300"
+      >
+        Let's Talk
+      </a>
     </div>
   );
 };
