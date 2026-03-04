@@ -37,7 +37,7 @@ const projects = [
   {
     title: "BDTV.live",
     description: "A modern social platform with real-time feeds, stories, messaging, and content recommendation engine.",
-    tags: ["Next.js", "Vite", "TypeScript", "React", "shadcn-ui", "Tailwind CSS", "Firebase"],
+    tags: ["Next.js", "TypeScript", "React", "shadcn-ui", "Tailwind CSS", "Firebase"],
     color: "from-orange-500/20 to-red-600/20",
     video: "/videos/project-4.webm",
     thumbnail: "/images/project-4-thumb.png",
@@ -54,8 +54,8 @@ const ProjectCard = ({ project, index }: { project: typeof projects[0]; index: n
 
   const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
     const rect = e.currentTarget.getBoundingClientRect();
-    const x = ((e.clientX - rect.left) / rect.width - 0.5) * 20;
-    const y = ((e.clientY - rect.top) / rect.height - 0.5) * -20;
+    const x = ((e.clientX - rect.left) / rect.width - 0.5) * 15;
+    const y = ((e.clientY - rect.top) / rect.height - 0.5) * -15;
     setTilt({ x, y });
   };
 
@@ -79,21 +79,25 @@ const ProjectCard = ({ project, index }: { project: typeof projects[0]; index: n
   return (
     <div
       ref={ref}
-      className={`transition-all duration-700 ${isVisible ? "animate-scale-in" : "opacity-0"}`}
-      style={{ animationDelay: `${index * 0.15}s` }}
+      className={`transition-all duration-1000 w-full h-full ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-16"
+        }`}
+      style={{ transitionDelay: `${index * 0.15}s` }}
     >
       <div
         onMouseMove={handleMouseMove}
         onMouseEnter={handleMouseEnter}
         onMouseLeave={handleMouseLeave}
-        className="glass rounded-2xl overflow-hidden glow-border hover:glow-box transition-all duration-300 group h-full"
+        className="glass rounded-[32px] overflow-hidden p-6 lg:p-8 bg-card/20 border-border/20 shadow-xl shadow-black/40 hover:shadow-[0_0_30px_hsl(var(--primary)/0.2)] hover:-translate-y-2 transition-all duration-500 group h-full flex flex-col relative"
         style={{
           transform: `perspective(1000px) rotateX(${tilt.y}deg) rotateY(${tilt.x}deg)`,
-          transition: "transform 0.1s ease-out, box-shadow 0.3s",
+          transition: isHovered ? "transform 0.1s ease-out, box-shadow 0.3s, background 0.3s" : "transform 0.5s ease-out, box-shadow 0.5s, background 0.5s",
         }}
       >
+        {/* Animated Background Gradient Layer */}
+        <div className="absolute inset-0 bg-gradient-to-br from-primary/5 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none" />
+
         {/* Video/Image preview */}
-        <div className={`h-52 bg-gradient-to-br ${project.color} relative overflow-hidden`}>
+        <div className={`w-full aspect-video rounded-2xl bg-gradient-to-br ${project.color} relative overflow-hidden mb-6 shadow-inner ring-1 ring-white/10 group-hover:ring-primary/40 transition-all duration-300`}>
           {project.video ? (
             <>
               <video
@@ -103,10 +107,10 @@ const ProjectCard = ({ project, index }: { project: typeof projects[0]; index: n
                 loop
                 playsInline
                 preload="metadata"
-                className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-500 ${isHovered ? "opacity-100" : "opacity-0"}`}
+                className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-700 ${isHovered ? "opacity-100 scale-105" : "opacity-0 scale-100"}`}
               />
               {/* Static thumbnail overlay */}
-              <div className={`absolute inset-0 transition-opacity duration-500 ${isHovered ? "opacity-0" : "opacity-100"}`}>
+              <div className={`absolute inset-0 bg-black/20 transition-all duration-700 ${isHovered ? "opacity-0 invisible" : "opacity-100 visible"}`}>
                 <img
                   src={project.thumbnail}
                   alt={project.title}
@@ -116,20 +120,20 @@ const ProjectCard = ({ project, index }: { project: typeof projects[0]; index: n
             </>
           ) : (
             <div className="absolute inset-0 flex items-center justify-center">
-              <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,hsl(var(--primary)/0.1),transparent_70%)]" />
+              <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,hsl(var(--primary)/0.15),transparent_70%)]" />
               <span className="text-4xl opacity-60">🚀</span>
             </div>
           )}
         </div>
 
-        <div className="p-6">
-          <h3 className="text-xl font-bold text-foreground mb-2 group-hover:text-primary transition-colors">
+        <div className="flex flex-col flex-1 relative z-10">
+          <h3 className="text-2xl font-bold text-foreground mb-3 group-hover:text-primary transition-colors duration-300">
             {project.title}
           </h3>
-          <p className="text-muted-foreground text-sm leading-relaxed mb-4">{project.description}</p>
+          <p className="text-foreground/70 text-base leading-relaxed mb-6 font-medium">{project.description}</p>
 
           {/* Tags */}
-          <div className="flex flex-wrap gap-2 mb-6">
+          <div className="flex flex-wrap gap-2.5 mb-8">
             {project.tags.map((tag) => {
               const getTagStyle = (t: string) => {
                 const brandColors: Record<string, { hex: string; iconProp?: string; customSvg?: React.ReactNode; viewBox?: string }> = {
@@ -170,27 +174,25 @@ const ProjectCard = ({ project, index }: { project: typeof projects[0]; index: n
               const tagData = getTagStyle(tag);
               const hex = tagData.hex;
 
-              // We need to dynamically get the icon path if it exists
               const iconPath = tagData.iconProp ? (si as any)[tagData.iconProp]?.path : null;
-
               const hasIcon = iconPath || tagData.customSvg;
 
               return (
                 <div
                   key={tag}
                   title={tag}
-                  className="w-8 h-8 rounded-full flex items-center justify-center border backdrop-blur-sm transition-all duration-300 hover:scale-110 cursor-help"
+                  className="w-9 h-9 rounded-full flex items-center justify-center border backdrop-blur-sm transition-all duration-300 hover:scale-[1.2] cursor-help shadow-sm"
                   style={{
                     backgroundColor: hex.startsWith('hsl') ? `hsl(var(--primary) / 0.15)` : `${hex}15`,
                     borderColor: hex.startsWith('hsl') ? `hsl(var(--primary) / 0.4)` : `${hex}40`,
-                    boxShadow: hex.startsWith('hsl') ? `0 0 10px hsl(var(--primary) / 0.2)` : `0 0 10px ${hex}20`
+                    boxShadow: hex.startsWith('hsl') ? `0 0 15px hsl(var(--primary) / 0.1)` : `0 0 15px ${hex}15`
                   }}
                 >
                   {hasIcon ? (
                     <svg
                       role="img"
                       viewBox={tagData.viewBox || "0 0 24 24"}
-                      className="w-4 h-4"
+                      className="w-[18px] h-[18px]"
                       style={{
                         fill: tagData.customSvg ? 'currentColor' : (hex === '#000000' ? '#ffffff' : hex),
                         color: hex === '#000000' ? '#ffffff' : hex
@@ -200,7 +202,7 @@ const ProjectCard = ({ project, index }: { project: typeof projects[0]; index: n
                       {tagData.customSvg ? tagData.customSvg : <path d={iconPath} />}
                     </svg>
                   ) : (
-                    <span className="text-[10px] font-bold" style={{ color: hex.startsWith('hsl') ? 'hsl(var(--primary))' : hex }}>
+                    <span className="text-[11px] font-bold" style={{ color: hex.startsWith('hsl') ? 'hsl(var(--primary))' : hex }}>
                       {tag.substring(0, 1).toUpperCase()}
                     </span>
                   )}
@@ -215,23 +217,26 @@ const ProjectCard = ({ project, index }: { project: typeof projects[0]; index: n
               href={project.liveLink}
               target="_blank"
               rel="noopener noreferrer"
-              className="group relative inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-background/50 backdrop-blur-sm text-primary text-sm font-semibold overflow-hidden transition-all duration-300 hover:scale-[1.03] border border-primary/30 hover:border-primary/80 hover:shadow-[0_0_15px_hsla(var(--primary)/0.3)]"
+              className="group/btn relative inline-flex items-center gap-2.5 px-6 py-3 rounded-xl bg-gradient-to-r from-primary/10 to-blue-500/10 backdrop-blur-sm text-primary text-sm font-semibold overflow-hidden transition-all duration-300 hover:scale-[1.02] border border-primary/40 hover:border-primary hover:shadow-[0_0_20px_hsla(var(--primary)/0.4)]"
             >
-              <div className="absolute inset-0 bg-primary/10 translate-y-[100%] group-hover:translate-y-0 transition-transform duration-300 ease-in-out" />
-              <ExternalLink className="w-4 h-4 relative z-10 transition-transform duration-300 group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
+              <div className="absolute inset-0 bg-gradient-to-r from-primary to-blue-500 opacity-0 group-hover/btn:opacity-20 transition-opacity duration-300 ease-in-out" />
+              <ExternalLink className="w-4 h-4 relative z-10 transition-transform duration-300 group-hover/btn:-translate-y-0.5 group-hover/btn:translate-x-0.5" />
               <span className="relative z-10">Live Demo</span>
             </a>
             <a
               href={project.sourceLink}
               target="_blank"
               rel="noopener noreferrer"
-              className="group relative inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-secondary/40 backdrop-blur-sm text-muted-foreground text-sm font-medium border border-border/40 hover:border-border hover:text-foreground hover:bg-secondary/80 transition-all duration-300 hover:scale-[1.03]"
+              className="group/btn relative inline-flex items-center gap-2.5 px-6 py-3 rounded-xl bg-secondary/50 backdrop-blur-sm text-foreground text-sm font-medium border border-border/50 hover:border-white/20 hover:bg-secondary/80 transition-all duration-300 hover:scale-[1.02]"
             >
-              <Github className="w-4 h-4 transition-transform duration-300 group-hover:rotate-12" />
+              <Github className="w-4 h-4 transition-transform duration-300 group-hover/btn:rotate-12" />
               <span className="relative z-10">Source</span>
             </a>
           </div>
         </div>
+
+        {/* Subtle accent line at the bottom that expands on hover */}
+        <div className="absolute bottom-0 left-0 h-1.5 bg-gradient-to-r from-primary to-blue-500 w-0 group-hover:w-full transition-all duration-500 ease-in-out" />
       </div>
     </div>
   );
@@ -241,16 +246,19 @@ const ProjectsSection = () => {
   const { ref, isVisible } = useScrollReveal();
 
   return (
-    <section id="projects" className="py-16 scroll-mt-24 relative">
-      <div>
+    <section id="projects" className="py-20 scroll-mt-24 relative overflow-hidden">
+      {/* Background radial glow */}
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-[radial-gradient(circle_at_center,hsl(var(--primary)/0.04)_0%,transparent_60%)] pointer-events-none blur-3xl z-0" />
+
+      <div className="relative z-10 w-full max-w-6xl mx-auto px-4 sm:px-8">
         <div ref={ref}>
           <h2 className={`text-4xl md:text-5xl font-bold mb-4 transition-all duration-700 ${isVisible ? "animate-slide-up" : "opacity-0"}`}>
             <span className="gradient-text">Projects</span>
           </h2>
-          <div className="w-20 h-1 bg-primary rounded-full mb-16" style={{ opacity: isVisible ? 1 : 0, transition: "opacity 0.6s 0.2s" }} />
+          <div className="w-24 h-1 bg-gradient-to-r from-[#00d2ff] to-[#3a7bd5] rounded-full mb-20" style={{ opacity: isVisible ? 1 : 0, transition: "opacity 0.6s 0.2s" }} />
         </div>
 
-        <div className="grid md:grid-cols-2 gap-8">
+        <div className="grid md:grid-cols-2 gap-8 lg:gap-12">
           {projects.map((project, i) => (
             <ProjectCard key={i} project={project} index={i} />
           ))}
