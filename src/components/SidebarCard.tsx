@@ -48,7 +48,7 @@ const SidebarCard = () => {
 
       {/* Let's Talk Button */}
       <a
-        href="mailto:mail2sakibul@gmail.com"
+        href="https://wa.me/+8801639658318"
         className="w-full py-3.5 rounded-xl bg-gradient-to-r from-primary to-blue-500 text-white font-semibold text-sm hover:opacity-90 hover:shadow-[0_0_20px_hsl(var(--primary)/0.4)] transition-all duration-300"
       >
         Let's Talk
