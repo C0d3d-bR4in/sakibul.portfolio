@@ -1,5 +1,6 @@
 import { useState, useRef } from "react";
-import { Github, Linkedin, Twitter, Mail, Copy, Check, Send, Loader2 } from "lucide-react";
+import { Github, Linkedin, Mail, Copy, Check, Send, Loader2 } from "lucide-react";
+import { FaWhatsapp } from "react-icons/fa";
 import { useScrollReveal } from "@/hooks/useScrollReveal";
 import { useToast } from "@/hooks/use-toast";
 import emailjs from '@emailjs/browser';
@@ -7,7 +8,7 @@ import emailjs from '@emailjs/browser';
 const socials = [
   { icon: Github, label: "GitHub", href: "https://github.com/C0d3d-bR4in" },
   { icon: Linkedin, label: "LinkedIn", href: "https://www.linkedin.com/in/md-sakibul-islam-sheikh-64462b290/" },
-  { icon: Twitter, label: "Twitter", href: "https://twitter.com" },
+  { icon: FaWhatsapp, label: "Whatsapp", href: "https://wa.me/+8801639658318" },
 ];
 
 const ContactSection = () => {
@@ -82,7 +83,7 @@ const ContactSection = () => {
                       onFocus={() => setFocused(field)}
                       onBlur={() => setFocused(null)}
                       rows={4}
-                      className={`w-full bg-secondary/50 border rounded-xl px-4 py-3 text-foreground placeholder:text-muted-foreground focus:outline-none transition-all duration-300 resize-none ${focused === field ? "border-primary shadow-[0_0_15px_hsl(var(--primary)/0.2)]" : "border-border"
+                      className={`w-full bg-secondary/50 border rounded-xl px-4 py-3 text-foreground placeholder:text-muted-foreground focus:outline-none transition-all duration-300 resize-none [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none] ${focused === field ? "border-primary shadow-[0_0_15px_hsl(var(--primary)/0.2)]" : "border-border"
                         }`}
                       placeholder={`Your ${field}...`}
                     />
