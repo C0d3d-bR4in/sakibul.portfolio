@@ -1,9 +1,9 @@
-import { Github, Linkedin, Twitter, Instagram } from "lucide-react";
+import { Github, Linkedin, Twitter, Instagram, Facebook } from "lucide-react";
 
 const socials = [
   { icon: Github, href: "https://github.com/C0d3d-bR4in", label: "GitHub" },
-  { icon: Twitter, href: "https://twitter.com", label: "Twitter" },
-  { icon: Instagram, href: "https://instagram.com", label: "Instagram" },
+  { icon: Facebook, href: "https://www.facebook.com/sakibul.islam.official/", label: "Facebook" },
+  { icon: Instagram, href: "https://www.instagram.com/sakibul.islam.official/", label: "Instagram" },
   { icon: Linkedin, href: "https://www.linkedin.com/in/md-sakibul-islam-sheikh-64462b290/", label: "LinkedIn" }
 ];
 
