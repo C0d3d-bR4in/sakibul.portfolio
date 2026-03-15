@@ -53,7 +53,12 @@
 @layer base {
   * {
     @apply border-border;
-    cursor: none !important;
+  }
+
+  @media (pointer: fine) {
+    * {
+      cursor: none !important;
+    }
   }
 
   body {

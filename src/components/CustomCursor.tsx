@@ -87,7 +87,7 @@ const CustomCursor = () => {
   const ringOffset = ringSize / 2;
 
   return (
-    <>
+    <div className="hidden md:block">
       {/* 1. Trailing Neon Circle Wrapper (handles position via JS) */}
       <div
         ref={ringPosRef}
@@ -147,7 +147,7 @@ const CustomCursor = () => {
           className={`absolute top-[-4px] left-[-4px] w-2 h-2 rounded-full bg-primary shadow-[0_0_10px_hsl(var(--primary))] transition-all duration-300 ease-out origin-center ${isSpecialHover ? "scale-100 opacity-100" : "scale-0 opacity-0"}`}
         />
       </div>
-    </>
+    </div>
   );
 };
 

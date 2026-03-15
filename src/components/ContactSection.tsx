@@ -131,11 +131,11 @@ const ContactSection = () => {
               <button
                 type="button"
                 onClick={copyEmail}
-                className="flex items-center gap-3 w-full px-4 py-3 rounded-xl bg-secondary/50 hover:bg-primary/10 border border-border hover:border-primary/30 transition-all duration-300 group"
+                className="flex items-center gap-2 sm:gap-3 w-full px-3 sm:px-4 py-3 rounded-xl bg-secondary/50 hover:bg-primary/10 border border-border hover:border-primary/30 transition-all duration-300 group"
               >
-                <Mail className="w-5 h-5 text-primary" />
-                <span className="font-mono text-sm text-foreground/90">mail2sakibul@gmail.com</span>
-                <span className="ml-auto">
+                <Mail className="w-5 h-5 text-primary shrink-0" />
+                <span className="font-mono text-xs sm:text-sm text-foreground/90 truncate">mail2sakibul@gmail.com</span>
+                <span className="ml-auto shrink-0 pl-1">
                   {copied ? (
                     <Check className="w-4 h-4 text-primary" />
                   ) : (
@@ -146,17 +146,17 @@ const ContactSection = () => {
             </div>
 
             {/* Social links */}
-            <div className="flex gap-4">
+            <div className="grid grid-cols-3 gap-3 sm:gap-4">
               {socials.map(({ icon: Icon, label, href }) => (
                 <a
                   key={label}
                   href={href}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex-1 glass rounded-xl p-4 flex flex-col items-center gap-2 glow-border hover:glow-box hover:border-primary/30 transition-all duration-300 group hover:-translate-y-1"
+                  className="glass rounded-xl p-3 sm:p-4 flex flex-col items-center justify-center gap-1.5 sm:gap-2 glow-border hover:glow-box hover:border-primary/30 transition-all duration-300 group hover:-translate-y-1"
                 >
-                  <Icon className="w-6 h-6 text-muted-foreground group-hover:text-primary transition-colors" />
-                  <span className="text-xs text-muted-foreground group-hover:text-foreground transition-colors">{label}</span>
+                  <Icon className="w-5 h-5 sm:w-6 sm:h-6 text-muted-foreground group-hover:text-primary transition-colors" />
+                  <span className="text-[11px] sm:text-xs text-muted-foreground group-hover:text-foreground transition-colors">{label}</span>
                 </a>
               ))}
             </div>
