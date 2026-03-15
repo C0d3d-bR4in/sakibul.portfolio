@@ -23,9 +23,9 @@ const HeroSection = () => {
         </p>
 
         {/* Name */}
-        <h1 className="text-5xl sm:text-6xl md:text-8xl font-bold mb-6 leading-tight">
+        <h1 className="text-4xl sm:text-5xl md:text-7xl lg:text-8xl font-bold mb-6 leading-tight">
           <span className="inline-block animate-slide-up" style={{ animationDelay: "0.4s", opacity: 0 }}>
-            <span className="gradient-text glow-text">Sakibul Islam Sheikh</span>
+            <span className="gradient-text glow-text break-words whitespace-normal">Sakibul Islam Sheikh</span>
           </span>
         </h1>
 

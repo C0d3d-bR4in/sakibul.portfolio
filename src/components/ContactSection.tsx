@@ -55,7 +55,7 @@ const ContactSection = () => {
   };
 
   return (
-    <section id="contact" className="py-16 scroll-mt-24 relative">
+    <section id="contact" className="py-16 scroll-mt-24 relative overflow-hidden">
       {/* Background glow */}
       <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-[500px] h-[500px] bg-primary/5 rounded-full blur-3xl" />
 
