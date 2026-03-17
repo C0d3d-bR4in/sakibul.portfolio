@@ -1,5 +1,5 @@
 import { useScrollReveal } from "@/hooks/useScrollReveal";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import * as si from 'simple-icons';
 
 const techItems = [
@@ -14,7 +14,7 @@ const techItems = [
   { name: "HTML5", iconPath: si.siHtml5.path, color: "#E34F26" },
   { name: "CSS3", iconPath: si.siCss.path, color: "#1572B6" },
   { name: "Tailwind CSS", iconPath: si.siTailwindcss.path, color: "#06B6D4" },
-  { name: "MySQL", iconPath: si.siMysql.path, color: "#4479A1" },
+  { name: "MySQL", iconPath: si.siMysql.path, color: "#3764ae" },
   { name: "PostgreSQL", iconPath: si.siPostgresql.path, color: "#4169E1" },
   { name: "MongoDB", iconPath: si.siMongodb.path, color: "#47A248" },
   { name: "Supabase", iconPath: si.siSupabase.path, color: "#3ECF8E" },
@@ -25,9 +25,11 @@ const techItems = [
   { name: "Postman", iconPath: si.siPostman.path, color: "#FF6C37" },
 ];
 
-const TechIcon = ({ item, index }: { item: typeof techItems[0]; index: number }) => {
-  const [hovered, setHovered] = useState(false);
+const TechIcon = ({ item, index, isActive }: { item: typeof techItems[0]; index: number; isActive?: boolean }) => {
+  const [mouseHovered, setMouseHovered] = useState(false);
   const { ref, isVisible } = useScrollReveal(0.05);
+
+  const hovered = mouseHovered || isActive;
 
   return (
     <div
@@ -36,8 +38,8 @@ const TechIcon = ({ item, index }: { item: typeof techItems[0]; index: number })
       style={{ animationDelay: `${index * 0.03}s` }}
     >
       <div
-        onMouseEnter={() => setHovered(true)}
-        onMouseLeave={() => setHovered(false)}
+        onMouseEnter={() => setMouseHovered(true)}
+        onMouseLeave={() => setMouseHovered(false)}
         className="tech-icon group relative flex flex-col items-center justify-center gap-2 w-20 h-24 sm:w-24 sm:h-28 rounded-2xl border transition-all duration-300 cursor-pointer backdrop-blur-sm"
         style={{
           borderColor: hovered ? item.color + "60" : "hsl(240 10% 20% / 0.4)",
@@ -86,6 +88,27 @@ const TechIcon = ({ item, index }: { item: typeof techItems[0]; index: number })
 
 const TechSection = () => {
   const { ref, isVisible } = useScrollReveal();
+  const [activeIndex, setActiveIndex] = useState(-1);
+
+  useEffect(() => {
+    let interval: NodeJS.Timeout;
+
+    if (isVisible) {
+      // Create a scanning "wave" effect highlighting each icon for 500ms
+      interval = setInterval(() => {
+        // Only trigger the auto-slide effect on mobile devices (<768px)
+        if (window.innerWidth < 768) {
+          setActiveIndex((prev) => (prev + 1) % techItems.length);
+        } else {
+          setActiveIndex(-1); // Turn off entirely on desktop
+        }
+      }, 500);
+    } else {
+      setActiveIndex(-1);
+    }
+
+    return () => clearInterval(interval);
+  }, [isVisible]);
 
   return (
     <section id="tech" className="py-20 scroll-mt-24 relative overflow-hidden flex flex-col items-center">
@@ -118,7 +141,7 @@ const TechSection = () => {
         {/* Flowing honeycomb/grid center aligned layout */}
         <div className="flex flex-wrap justify-center content-center max-w-4xl gap-3 sm:gap-4 px-4 sm:px-8">
           {techItems.map((item, i) => (
-            <TechIcon key={item.name} item={item} index={i} />
+            <TechIcon key={item.name} item={item} index={i} isActive={activeIndex === i} />
           ))}
         </div>
       </div>
