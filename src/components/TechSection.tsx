@@ -1,5 +1,5 @@
 import { useScrollReveal } from "@/hooks/useScrollReveal";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import * as si from 'simple-icons';
 
 const techItems = [
@@ -25,7 +25,19 @@ const techItems = [
   { name: "Postman", iconPath: si.siPostman.path, color: "#FF6C37" },
 ];
 
-const TechIcon = ({ item, index, isActive }: { item: typeof techItems[0]; index: number; isActive?: boolean }) => {
+const TechIcon = ({ 
+  item, 
+  index, 
+  isActive, 
+  onInteract,
+  onLeave
+}: { 
+  item: typeof techItems[0]; 
+  index: number; 
+  isActive?: boolean;
+  onInteract?: (index: number) => void;
+  onLeave?: () => void;
+}) => {
   const [mouseHovered, setMouseHovered] = useState(false);
   const { ref, isVisible } = useScrollReveal(0.05);
 
@@ -38,8 +50,16 @@ const TechIcon = ({ item, index, isActive }: { item: typeof techItems[0]; index:
       style={{ animationDelay: `${index * 0.03}s` }}
     >
       <div
-        onMouseEnter={() => setMouseHovered(true)}
-        onMouseLeave={() => setMouseHovered(false)}
+        onMouseEnter={() => {
+          setMouseHovered(true);
+          onInteract?.(index);
+        }}
+        onMouseLeave={() => {
+          setMouseHovered(false);
+          onLeave?.();
+        }}
+        onClick={() => onInteract?.(index)}
+        onTouchStart={() => onInteract?.(index)}
         className="tech-icon group relative flex flex-col items-center justify-center gap-2 w-20 h-24 sm:w-24 sm:h-28 rounded-2xl border transition-all duration-300 cursor-pointer backdrop-blur-sm"
         style={{
           borderColor: hovered ? item.color + "60" : "hsl(240 10% 20% / 0.4)",
@@ -89,11 +109,31 @@ const TechIcon = ({ item, index, isActive }: { item: typeof techItems[0]; index:
 const TechSection = () => {
   const { ref, isVisible } = useScrollReveal();
   const [activeIndex, setActiveIndex] = useState(-1);
+  const [isPaused, setIsPaused] = useState(false);
+  const pauseTimeoutRef = useRef<NodeJS.Timeout>();
+
+  const handleInteract = (index: number) => {
+    setActiveIndex(index);
+    setIsPaused(true);
+    
+    // Resume auto-sliding after 2 seconds of inactivity
+    if (pauseTimeoutRef.current) {
+      clearTimeout(pauseTimeoutRef.current);
+    }
+    pauseTimeoutRef.current = setTimeout(() => {
+      setIsPaused(false);
+    }, 2000);
+  };
+
+  const handleLeave = () => {
+    // Do nothing on leave. Let the 2-second timeout resume the sliding organically 
+    // from the currently selected index, so the scanner continues to the next icon.
+  };
 
   useEffect(() => {
     let interval: NodeJS.Timeout;
 
-    if (isVisible) {
+    if (isVisible && !isPaused) {
       // Create a scanning "wave" effect highlighting each icon for 500ms
       interval = setInterval(() => {
         // Only trigger the auto-slide effect on mobile devices (<768px)
@@ -103,12 +143,21 @@ const TechSection = () => {
           setActiveIndex(-1); // Turn off entirely on desktop
         }
       }, 500);
-    } else {
+    } else if (!isVisible) {
       setActiveIndex(-1);
     }
 
     return () => clearInterval(interval);
-  }, [isVisible]);
+  }, [isVisible, isPaused]);
+
+  // Clean up timeout on unmount
+  useEffect(() => {
+    return () => {
+      if (pauseTimeoutRef.current) {
+        clearTimeout(pauseTimeoutRef.current);
+      }
+    };
+  }, []);
 
   return (
     <section id="tech" className="py-20 scroll-mt-24 relative overflow-hidden flex flex-col items-center">
@@ -141,7 +190,14 @@ const TechSection = () => {
         {/* Flowing honeycomb/grid center aligned layout */}
         <div className="flex flex-wrap justify-center content-center max-w-4xl gap-3 sm:gap-4 px-4 sm:px-8">
           {techItems.map((item, i) => (
-            <TechIcon key={item.name} item={item} index={i} isActive={activeIndex === i} />
+            <TechIcon 
+              key={item.name} 
+              item={item} 
+              index={i} 
+              isActive={activeIndex === i} 
+              onInteract={handleInteract}
+              onLeave={handleLeave}
+            />
           ))}
         </div>
       </div>
