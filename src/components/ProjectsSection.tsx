@@ -26,7 +26,7 @@ const projects = [
   },
   {
     title: "CipherVault",
-    description: "A privacy-first, browser-based encryption toolkit designed for zero-trust security. CipherVault+ performs all encryption and decryption directly on the client using AES-256-GCM, ensuring no files ever leave the user’s device. It goes beyond basic encryption with advanced capabilities like steganography, multi-layer encryption, encrypted note storage (Text Vault), and dual-container vaults with plausible deniability. Built for security enthusiasts and power users who demand complete control over their data.",
+    description: "A privacy-first, browser-based encryption toolkit, CipherVault+ utilizes client-side AES-256-GCM encryption, ensuring user files remain on their device. It features advanced functionalities such as steganography, multi-layer encryption, encrypted note storage, and dual-container vaults for plausible deniability, catering to security enthusiasts and power users seeking full data control.",
     tags: ["React", "Vite", "TypeScript", "shadcn-ui", "Tailwind CSS"],
     color: "from-emerald-500/20 to-teal-600/20",
     video: "/videos/project-3.webm",
