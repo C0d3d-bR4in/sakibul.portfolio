@@ -26,7 +26,7 @@ const projects = [
   },
   {
     title: "CipherVault",
-    description: "Interactive data visualization dashboard with real-time metrics, custom charts, and exportable reports.",
+    description: "A privacy-first, browser-based encryption toolkit designed for zero-trust security. CipherVault+ performs all encryption and decryption directly on the client using AES-256-GCM, ensuring no files ever leave the user’s device. It goes beyond basic encryption with advanced capabilities like steganography, multi-layer encryption, encrypted note storage (Text Vault), and dual-container vaults with plausible deniability. Built for security enthusiasts and power users who demand complete control over their data.",
     tags: ["React", "Vite", "TypeScript", "shadcn-ui", "Tailwind CSS"],
     color: "from-emerald-500/20 to-teal-600/20",
     video: "/videos/project-3.webm",
@@ -36,7 +36,7 @@ const projects = [
   },
   {
     title: "BDTV.live",
-    description: "A modern social platform with real-time feeds, stories, messaging, and content recommendation engine.",
+    description: "A high-performance IPTV streaming platform delivering 1000+ live channels with a clean, real-time interface. BDTV.live features categorized channel browsing, instant search, playlist filtering, and live event highlights like BPL matches. Designed for smooth playback and scalability, it combines a modern streaming experience with an integrated admin panel for content management and system control.",
     tags: ["Next.js", "TypeScript", "React", "shadcn-ui", "Tailwind CSS", "Firebase"],
     color: "from-orange-500/20 to-red-600/20",
     video: "/videos/project-4.webm",

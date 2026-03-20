@@ -57,7 +57,7 @@ const ContactSection = () => {
   return (
     <section id="contact" className="py-16 scroll-mt-24 relative overflow-hidden">
       {/* Background glow */}
-      <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-[500px] h-[500px] bg-primary/5 rounded-full blur-3xl" />
+      <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-[300px] h-[300px] md:w-[500px] md:h-[500px] bg-primary/5 rounded-full blur-[80px] md:blur-3xl pointer-events-none opacity-40 md:opacity-100" />
 
       <div className="relative z-10">
         <div ref={ref}>
