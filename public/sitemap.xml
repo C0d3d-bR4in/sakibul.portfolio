@@ -17,49 +17,5 @@
     <priority>0.5</priority>
   </url>
 
-  <!-- External Project URLs (Note: Google may ignore these in an XML sitemap, but they are included as requested) -->
-  <url>
-    <loc>http://bdzone.store/</loc>
-    <changefreq>monthly</changefreq>
-  </url>
-  <url>
-    <loc>https://elysvo.com/</loc>
-    <changefreq>monthly</changefreq>
-  </url>
-  <url>
-    <loc>https://cipher-vault.replit.app/</loc>
-    <changefreq>monthly</changefreq>
-  </url>
-  <url>
-    <loc>https://tv.gametopup.store/</loc>
-    <changefreq>monthly</changefreq>
-  </url>
 
-  <!-- Source Code Repositories -->
-  <url>
-    <loc>https://github.com/C0d3d-bR4in/cipher-vault</loc>
-    <changefreq>monthly</changefreq>
-  </url>
-  <url>
-    <loc>https://github.com/C0d3d-bR4in/BDTV.live</loc>
-    <changefreq>monthly</changefreq>
-  </url>
-
-  <!-- Social Media Profiles -->
-  <url>
-    <loc>https://github.com/C0d3d-bR4in</loc>
-    <changefreq>monthly</changefreq>
-  </url>
-  <url>
-    <loc>https://www.facebook.com/sakibul.islam.official/</loc>
-    <changefreq>monthly</changefreq>
-  </url>
-  <url>
-    <loc>https://www.instagram.com/sakibul.islam.official/</loc>
-    <changefreq>monthly</changefreq>
-  </url>
-  <url>
-    <loc>https://www.linkedin.com/in/md-sakibul-islam-sheikh-64462b290/</loc>
-    <changefreq>monthly</changefreq>
-  </url>
 </urlset>
