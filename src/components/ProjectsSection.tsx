@@ -93,19 +93,11 @@ const projects = [
 
 const ProjectCard = ({ project, index }: { project: typeof projects[0]; index: number }) => {
   const { ref, isVisible } = useScrollReveal(0.1);
-  const [tilt, setTilt] = useState({ x: 0, y: 0 });
   const [isHovered, setIsHovered] = useState(false);
   const videoRef = useRef<HTMLVideoElement>(null);
 
   const hasVideo = project.video && project.video !== "#" && project.video !== "";
   const hasThumbnail = project.thumbnail && project.thumbnail !== "" && project.thumbnail !== "#";
-
-  const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
-    const rect = e.currentTarget.getBoundingClientRect();
-    const x = ((e.clientX - rect.left) / rect.width - 0.5) * 15;
-    const y = ((e.clientY - rect.top) / rect.height - 0.5) * -15;
-    setTilt({ x, y });
-  };
 
   const handleMouseEnter = () => {
     setIsHovered(true);
@@ -116,7 +108,6 @@ const ProjectCard = ({ project, index }: { project: typeof projects[0]; index: n
   };
 
   const handleMouseLeave = () => {
-    setTilt({ x: 0, y: 0 });
     setIsHovered(false);
     if (videoRef.current) {
       videoRef.current.pause();
@@ -132,14 +123,9 @@ const ProjectCard = ({ project, index }: { project: typeof projects[0]; index: n
       style={{ transitionDelay: `${index * 0.15}s` }}
     >
       <div
-        onMouseMove={handleMouseMove}
         onMouseEnter={handleMouseEnter}
         onMouseLeave={handleMouseLeave}
         className="glass rounded-[32px] overflow-hidden p-6 lg:p-8 bg-card/20 border-border/20 shadow-xl shadow-black/40 hover:shadow-[0_0_30px_hsl(var(--primary)/0.2)] hover:-translate-y-2 transition-all duration-500 group h-full flex flex-col relative"
-        style={{
-          transform: `perspective(1000px) rotateX(${tilt.y}deg) rotateY(${tilt.x}deg)`,
-          transition: isHovered ? "transform 0.1s ease-out, box-shadow 0.3s, background 0.3s" : "transform 0.5s ease-out, box-shadow 0.5s, background 0.5s",
-        }}
       >
         {/* Animated Background Gradient Layer */}
         <div className="absolute inset-0 bg-gradient-to-br from-primary/5 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none" />
