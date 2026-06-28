@@ -97,6 +97,9 @@ const ProjectCard = ({ project, index }: { project: typeof projects[0]; index: n
   const [isHovered, setIsHovered] = useState(false);
   const videoRef = useRef<HTMLVideoElement>(null);
 
+  const hasVideo = project.video && project.video !== "#" && project.video !== "";
+  const hasThumbnail = project.thumbnail && project.thumbnail !== "" && project.thumbnail !== "#";
+
   const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
     const rect = e.currentTarget.getBoundingClientRect();
     const x = ((e.clientX - rect.left) / rect.width - 0.5) * 15;
@@ -106,7 +109,7 @@ const ProjectCard = ({ project, index }: { project: typeof projects[0]; index: n
 
   const handleMouseEnter = () => {
     setIsHovered(true);
-    if (videoRef.current && project.video) {
+    if (videoRef.current && hasVideo) {
       videoRef.current.currentTime = 0;
       videoRef.current.play().catch(() => { });
     }
@@ -143,7 +146,7 @@ const ProjectCard = ({ project, index }: { project: typeof projects[0]; index: n
 
         {/* Video/Image preview */}
         <div className={`w-full aspect-video rounded-2xl bg-gradient-to-br ${project.color} relative overflow-hidden mb-6 shadow-inner ring-1 ring-white/10 group-hover:ring-primary/40 transition-all duration-300`}>
-          {project.video ? (
+          {hasVideo ? (
             <>
               <video
                 ref={videoRef}
@@ -160,9 +163,28 @@ const ProjectCard = ({ project, index }: { project: typeof projects[0]; index: n
                   src={project.thumbnail}
                   alt={project.title}
                   className="w-full h-full object-cover"
+                  style={{
+                    imageRendering: '-webkit-optimize-contrast',
+                    transform: 'translateZ(0)',
+                    backfaceVisibility: 'hidden',
+                  }}
                 />
               </div>
             </>
+          ) : hasThumbnail ? (
+            <div className="absolute inset-0 transition-all duration-700 overflow-hidden">
+              <img
+                src={project.thumbnail}
+                alt={project.title}
+                className={`w-full h-full object-cover transition-transform duration-700 ${isHovered ? "scale-105" : "scale-100"}`}
+                style={{
+                  imageRendering: '-webkit-optimize-contrast',
+                  transform: 'translateZ(0)',
+                  backfaceVisibility: 'hidden',
+                }}
+              />
+              <div className="absolute inset-0 bg-black/20 pointer-events-none" />
+            </div>
           ) : (
             <div className="absolute inset-0 flex items-center justify-center">
               <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,hsl(var(--primary)/0.15),transparent_70%)]" />

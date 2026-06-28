@@ -13,7 +13,16 @@ const SidebarCard = () => {
 
       {/* Avatar Container */}
       <div className="w-full relative rounded-2xl overflow-hidden aspect-[4/5] max-h-[300px] mb-6 flex items-center justify-center p-0 shadow-lg shadow-black/20 group">
-        <img src="/ss.jpeg" alt="Profile Details" className="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-110 relative z-0" />
+        <img
+          src="/ss.jpeg"
+          alt="Profile Details"
+          className="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-110 relative z-0"
+          style={{
+            imageRendering: '-webkit-optimize-contrast',
+            transform: 'translateZ(0)',
+            backfaceVisibility: 'hidden',
+          }}
+        />
       </div>
 
       {/* Hero Text */}
