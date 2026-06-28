@@ -1,5 +1,6 @@
 import { useScrollReveal } from "@/hooks/useScrollReveal";
 import { Briefcase } from "lucide-react";
+import { useState, useEffect, useRef } from "react";
 
 const experiences = [
   {
@@ -42,7 +43,13 @@ const TimelineItem = ({ item, index }: { item: typeof experiences[0]; index: num
       style={{ transitionDelay: `${index * 0.15}s` }}
     >
       {/* Timeline central neon dot */}
-      <div className="absolute left-6 md:left-1/2 md:-translate-x-1/2 w-4 h-4 rounded-full bg-primary z-20 shadow-[0_0_15px_hsl(var(--primary))] ring-4 ring-background transition-transform duration-500 hover:scale-150" />
+      <div 
+        className={`absolute left-6 md:left-1/2 md:-translate-x-1/2 w-4 h-4 rounded-full z-20 ring-4 ring-background transition-all duration-700 hover:scale-150 ${
+          isVisible 
+            ? "bg-primary shadow-[0_0_15px_hsl(var(--primary))] scale-100" 
+            : "bg-white/10 shadow-none scale-75"
+        }`} 
+      />
 
       {/* Connection Line to Dot (Desktop only) */}
       <div className={`hidden md:block absolute top-1/2 -translate-y-1/2 h-[2px] bg-gradient-to-r ${isLeft ? "from-transparent to-primary/50 right-1/2" : "from-primary/50 to-transparent left-1/2"} w-8 z-0`} />
@@ -85,6 +92,37 @@ const TimelineItem = ({ item, index }: { item: typeof experiences[0]; index: num
 
 const ExperienceSection = () => {
   const { ref, isVisible } = useScrollReveal();
+  const containerRef = useRef<HTMLDivElement>(null);
+  const [lineHeight, setLineHeight] = useState(0);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      if (!containerRef.current) return;
+      const rect = containerRef.current.getBoundingClientRect();
+      const viewportHeight = window.innerHeight;
+      
+      // Start filling when the top of the container is at 75% viewport height
+      const triggerPoint = viewportHeight * 0.75;
+      const relativeScroll = triggerPoint - rect.top;
+      
+      // Container height
+      const totalHeight = rect.height;
+      const progress = Math.max(0, Math.min(relativeScroll / totalHeight, 1));
+      
+      window.requestAnimationFrame(() => {
+        setLineHeight(progress * 100);
+      });
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    window.addEventListener("resize", handleScroll);
+    handleScroll();
+
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+      window.removeEventListener("resize", handleScroll);
+    };
+  }, []);
 
   return (
     <section id="experience" className="py-20 scroll-mt-24 relative overflow-hidden">
@@ -100,9 +138,18 @@ const ExperienceSection = () => {
         </div>
 
         {/* Timeline Container */}
-        <div className="relative w-full">
-          {/* Vertical Glowing Line */}
-          <div className="absolute left-[31px] md:left-1/2 md:-translate-x-[1px] top-4 bottom-4 w-[2px] bg-gradient-to-b from-transparent via-primary/50 to-transparent shadow-[0_0_10px_hsl(var(--primary)/0.4)] z-0" />
+        <div ref={containerRef} className="relative w-full">
+          {/* Vertical Timeline Line Container */}
+          <div className="absolute left-[31px] md:left-1/2 md:-translate-x-[1px] top-4 bottom-4 w-[2px] z-0">
+            {/* Background Track Line */}
+            <div className="absolute inset-0 bg-white/10" />
+            
+            {/* Active Filling Line */}
+            <div 
+              className="absolute top-0 left-0 w-full bg-gradient-to-b from-primary via-accent to-blue-500 shadow-[0_0_15px_hsl(var(--primary))] origin-top transition-all duration-150 ease-out"
+              style={{ height: `${lineHeight}%` }}
+            />
+          </div>
 
           {experiences.map((item, i) => (
             <TimelineItem key={i} item={item} index={i} />
