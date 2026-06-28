@@ -1,7 +1,8 @@
-import { ExternalLink, Github, Play } from "lucide-react";
+import { ExternalLink, Github, Play, ChevronDown, ChevronUp } from "lucide-react";
 import { useScrollReveal } from "@/hooks/useScrollReveal";
 import { useState, useRef } from "react";
 import * as si from 'simple-icons';
+import { Button } from "@/components/ui/button";
 
 const projects = [
   {
@@ -25,8 +26,29 @@ const projects = [
     sourceLink: "#",
   },
   {
+    title: "RareMart Gadgets selling E-commerce",
+    description: "A comprehensive dashboard for managing warehouse logistics and supply chain operations in real-time.",
+    tags: ["Wordpress", "Woocommerce", "Elementor", "php", "mysql", "Bootstrap"],
+    color: "from-blue-500/20 to-indigo-600/20",
+    video: "/videos/RareMart.mp4",
+    thumbnail: "/images/project-5-thumb.png",
+    liveLink: "https://raremart.live/",
+    sourceLink: "#",
+  },
+  {
+    title: "Stream24.xyz IPTV Streaming Platform",
+    description: "A high-performance IPTV streaming platform delivering 4000+ live channels with a clean, real-time interface. ",
+    tags: ["Next.js", "TypeScript", "React", "shadcn-ui", "Tailwind CSS", "Firebase"],
+    color: "from-orange-500/20 to-red-600/20",
+    video: "/videos/project-4.webm",
+    thumbnail: "/images/project-4-thumb.png",
+    liveLink: "https://stream24.xyz",
+    sourceLink: "https://github.com/C0d3d-bR4in/BDTV.live",
+  },
+
+   {
     title: "CipherVault",
-    description: "A privacy-first, browser-based encryption toolkit, CipherVault+ utilizes client-side AES-256-GCM encryption, ensuring user files remain on their device. It features advanced functionalities such as steganography, multi-layer encryption, encrypted note storage, and dual-container vaults for plausible deniability, catering to security enthusiasts and power users seeking full data control.",
+    description: "A privacy-first encryption toolkit CipherVault. It offers features like steganography, multi-layer encryption, encrypted note storage, and dual-container vaults, targeting security enthusiasts and power users who desire complete data control.",
     tags: ["React", "Vite", "TypeScript", "shadcn-ui", "Tailwind CSS"],
     color: "from-emerald-500/20 to-teal-600/20",
     video: "/videos/project-3.webm",
@@ -34,15 +56,38 @@ const projects = [
     liveLink: "https://cipher-vault.replit.app/",
     sourceLink: "https://github.com/C0d3d-bR4in/cipher-vault",
   },
+
   {
-    title: "BDTV.live",
-    description: "A high-performance IPTV streaming platform delivering 1000+ live channels with a clean, real-time interface. BDTV.live features categorized channel browsing, instant search, playlist filtering, and live event highlights like BPL matches. Designed for smooth playback and scalability, it combines a modern streaming experience with an integrated admin panel for content management and system control.",
-    tags: ["Next.js", "TypeScript", "React", "shadcn-ui", "Tailwind CSS", "Firebase"],
-    color: "from-orange-500/20 to-red-600/20",
-    video: "/videos/project-4.webm",
-    thumbnail: "/images/project-4-thumb.png",
-    liveLink: "https://tv.gametopup.store/",
-    sourceLink: "https://github.com/C0d3d-bR4in/BDTV.live",
+    title: "Blockchain-Based Decentralized Identity Verification System",
+    description: "A decentralized Sensitive data storing platform built on blockchain technology ensuring transparency and tamper-proof data management.",
+    tags: ["React", "Ether.js", "Solidity", "ipfs", "Tailwind CSS", "TypeScript"],
+    color: "from-emerald-500/20 to-cyan-600/20",
+    video: "#",
+    thumbnail: "/images/DID.png",
+    liveLink: "https://github.com/C0d3d-bR4in/A-Blockchain-Based-DID-Verification-system-using-IPFS-and-Cryptographic-Security",
+    sourceLink: "https://github.com/C0d3d-bR4in/A-Blockchain-Based-DID-Verification-system-using-IPFS-and-Cryptographic-Security",
+  },
+
+  {
+    title: "TopTime Watch Sellling E-commerce",
+    description: "A full-stack e-commerce solution with real-time inventory, Bkash payments, and wordpress admin dashboard.",
+    tags: ["Wordpress", "Woocommerce", "MYSQL", "Elementor", "Bootstrap"],
+    color: "from-purple-500/20 to-indigo-600/20",
+    video: "/videos/Toptime.mp4",
+    thumbnail: "/images/toptime.png",
+    liveLink: "https://watch.gametopup.store/",
+    sourceLink: "#",
+  },
+  
+  {
+    title: "RareMart auto Reply Assistant & Chatbot",
+    description: "A chatbot and auto-reply assistant for E-commerce, designed to enhance customer support and engagement through automated responses.",
+    tags: ["Node.js", "React", "Next.js", "Supabase", "Tailwind css"],
+    color: "from-rose-500/20 to-orange-600/20",
+    video: "/videos/chatbot.mp4",
+    thumbnail: "/images/chatbot.jpg",
+    liveLink: "https://m.me/RareMart.Live?ref=order_255_Pico_Neo_3_Pro",
+    sourceLink: "https://github.com/C0d3d-bR4in/Chatbot-Frontend",
   },
 ];
 
@@ -147,6 +192,12 @@ const ProjectCard = ({ project, index }: { project: typeof projects[0]; index: n
                   'vite': { hex: '#646CFF', iconProp: 'siVite' },
                   'wordpress': { hex: '#21759B', iconProp: 'siWordpress' },
                   'woocommerce': { hex: '#96588A', iconProp: 'siWoocommerce' },
+                  'solidity': { hex: '#363636', iconProp: 'siSolidity' },
+                  'ether.js': { hex: '#2535A0', iconProp: 'siEthers' },
+                  'ipfs': { hex: '#65C2CB', iconProp: 'siIpfs' },
+                  'vue.js': { hex: '#4FC08D', iconProp: 'siVuedotjs' },
+                  'pinia': { hex: '#FFD859', iconProp: 'siPinia' },
+                  'chart.js': { hex: '#FF6384', iconProp: 'siChartdotjs' },
                   'bkash api': {
                     hex: '#e2136e',
                     viewBox: '0 0 48 48',
@@ -165,6 +216,9 @@ const ProjectCard = ({ project, index }: { project: typeof projects[0]; index: n
                   'elementor': { hex: '#D23953', iconProp: 'siElementor' },
                   'websocket': { hex: '#f0db4f' },
                   'wpbakery page builder': { hex: '#0091CA' },
+                  'php': { hex: '#777BB4', iconProp: 'siPhp' },
+                  'mysql': { hex: '#4479A1', iconProp: 'siMysql' },
+                  'bootstrap': { hex: '#7952B3', iconProp: 'siBootstrap' },
                 };
 
                 const data = brandColors[t.toLowerCase()];
@@ -244,6 +298,9 @@ const ProjectCard = ({ project, index }: { project: typeof projects[0]; index: n
 
 const ProjectsSection = () => {
   const { ref, isVisible } = useScrollReveal();
+  const [showAll, setShowAll] = useState(false);
+
+  const displayedProjects = showAll ? projects : projects.slice(0, 4);
 
   return (
     <section id="projects" className="py-20 scroll-mt-24 relative overflow-hidden">
@@ -259,10 +316,36 @@ const ProjectsSection = () => {
         </div>
 
         <div className="grid md:grid-cols-2 gap-8 lg:gap-12">
-          {projects.map((project, i) => (
+          {displayedProjects.map((project, i) => (
             <ProjectCard key={i} project={project} index={i} />
           ))}
         </div>
+
+        {projects.length > 4 && (
+          <div className="flex justify-center mt-16">
+            <Button
+              onClick={() => setShowAll(!showAll)}
+              variant="outline"
+              size="lg"
+              className="group relative px-8 py-6 rounded-2xl bg-background/50 backdrop-blur-md border-primary/20 hover:border-primary/50 text-foreground transition-all duration-300 hover:scale-105 hover:shadow-[0_0_20px_rgba(var(--primary),0.2)] overflow-hidden"
+            >
+              <div className="absolute inset-0 bg-gradient-to-r from-primary/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+              <div className="flex items-center gap-3 relative z-10">
+                {showAll ? (
+                  <>
+                    <span className="text-lg font-semibold">View Less</span>
+                    <ChevronUp className="w-5 h-5 transition-transform duration-300 group-hover:-translate-y-1" />
+                  </>
+                ) : (
+                  <>
+                    <span className="text-lg font-semibold">View More Projects</span>
+                    <ChevronDown className="w-5 h-5 transition-transform duration-300 group-hover:translate-y-1" />
+                  </>
+                )}
+              </div>
+            </Button>
+          </div>
+        )}
       </div>
     </section>
   );
