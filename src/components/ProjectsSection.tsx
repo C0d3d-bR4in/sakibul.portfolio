@@ -27,7 +27,7 @@ const projects = [
   },
   {
     title: "RareMart Gadgets selling E-commerce",
-    description: "A comprehensive dashboard for managing warehouse logistics and supply chain operations in real-time.",
+    description: "Gadgets selling E-commerce with auto reply assistant & chatbot for customer support and engagement.",
     tags: ["Wordpress", "Woocommerce", "Elementor", "php", "mysql", "Bootstrap"],
     color: "from-blue-500/20 to-indigo-600/20",
     video: "/videos/RareMart.mp4",
@@ -53,7 +53,7 @@ const projects = [
     color: "from-emerald-500/20 to-teal-600/20",
     video: "/videos/project-3.webm",
     thumbnail: "/images/project-3-thumb.png",
-    liveLink: "https://cipher-vault.replit.app/",
+    liveLink: "https://cipher-vault-lilac.vercel.app/",
     sourceLink: "https://github.com/C0d3d-bR4in/cipher-vault",
   },
 
