@@ -7,7 +7,7 @@ import emailjs from '@emailjs/browser';
 
 const socials = [
   { icon: Github, label: "GitHub", href: "https://github.com/C0d3d-bR4in" },
-  { icon: Linkedin, label: "LinkedIn", href: "https://www.linkedin.com/in/md-sakibul-islam-sheikh-64462b290/" },
+  { icon: Linkedin, label: "LinkedIn", href: "https://www.linkedin.com/in/md-sakibul-islam-sheikh/" },
   { icon: FaWhatsapp, label: "Whatsapp", href: "https://wa.me/+8801639658318" },
 ];
 

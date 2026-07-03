@@ -4,7 +4,7 @@ const socials = [
   { icon: Github, href: "https://github.com/C0d3d-bR4in", label: "GitHub" },
   { icon: Facebook, href: "https://www.facebook.com/sakibul.islam.official/", label: "Facebook" },
   { icon: Instagram, href: "https://www.instagram.com/sakibul.islam.official/", label: "Instagram" },
-  { icon: Linkedin, href: "https://www.linkedin.com/in/md-sakibul-islam-sheikh-64462b290/", label: "LinkedIn" }
+  { icon: Linkedin, href: "https://www.linkedin.com/in/md-sakibul-islam-sheikh/", label: "LinkedIn" }
 ];
 
 const SidebarCard = () => {

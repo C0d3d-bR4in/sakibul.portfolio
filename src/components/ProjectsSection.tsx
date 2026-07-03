@@ -64,7 +64,7 @@ const projects = [
     color: "from-emerald-500/20 to-cyan-600/20",
     video: "#",
     thumbnail: "/images/DID.png",
-    liveLink: "https://github.com/C0d3d-bR4in/A-Blockchain-Based-DID-Verification-system-using-IPFS-and-Cryptographic-Security",
+    liveLink: "https://www.researchgate.net/publication/408088302_Securing_Digital_Services_in_Bangladesh_A_Decentralized_Identity_Verification_Framework_Using_Blockchain_and_Cryptography",
     sourceLink: "https://github.com/C0d3d-bR4in/A-Blockchain-Based-DID-Verification-system-using-IPFS-and-Cryptographic-Security",
   },
 
