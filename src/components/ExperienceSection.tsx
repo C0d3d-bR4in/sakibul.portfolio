@@ -4,10 +4,15 @@ import { useState, useEffect, useRef } from "react";
 
 const experiences = [
   {
-    company: "Gaming & Digital Commerce Platform",
+    company: "Modern Web Ecosystems",
     role: "Full-Stack Developer",
-    period: "2025 – Present",
-    description: "Built and deployed a real-time digital product top-up system using React, Node.js, Supabase, and WebSocket. Integrated Piprapay and bKash APIs, developed admin dashboards, and implemented secure transaction handling with live inventory synchronization.",
+    period: "Mid 2025 – Present",
+    description: [
+      "Developing highly responsive, user-centric web applications utilizing React and Next.js.",
+      "Building and integrating robust backend services with Node.js and Express.js for seamless data flow.",
+      "Implementing secure authentication and authorization mechanisms using JWT and OAuth.",
+      "Optimizing application performance through code splitting, lazy loading, and efficient state management.",
+    ],
   },
   {
     company: "CipherVault & Blockchain Project",
@@ -16,16 +21,25 @@ const experiences = [
     description: "Designed and developed an advanced encryption/decryption platform featuring steganography-based message hiding, dual-container secure file architecture, plausible deniability mode, and experimental cryptographic tools. Conducted malware behavior analysis and secure data workflow research. Also I Worked on Blockchain based DID projects.",
   },
   {
-    company: "WooCommerce & Marketplace Systems",
-    role: "E-commerce Developer",
-    period: "2023 – 2025",
-    description: "Developed and customized high-performance WooCommerce platforms with real-time inventory, payment gateway integrations, and optimized UI/UX.",
+    company: "E-commerce Solutions",
+    role: "Web Developer",
+    period: "2023 – Mid 2025",
+    description: [
+                  "Designed and deployed customized e-commerce platforms.",
+                  "Optimized store performance and managed complete digital workflows using WordPress and WooCommerce.",
+                  "Set up secure payment gateways and integrated third-party APIs for enhanced functionality.",
+  ],
+                  
   },
   {
-    company: "Web & Interactive Applications",
-    role: "Frontend Developer",
-    period: "2022 – 2023",
-    description: "Started my career building websites and web apps for local businesses and startups.",
+    company: "Manarat International University (MIU)",
+    role: "B.Sc. in Computer Science & Engineering",
+    period: "2022 – 2026",
+    description: [
+                  "Focused on core software engineering principles, algorithms, and system architecture.",
+                  "Engaged in various projects and research initiatives, enhancing practical skills in web development and cybersecurity.",
+                  "Authored an academic thesis on blockchain and cryptography-based digital identity verification frameworks.",
+    ],
   },
 ];
 
@@ -77,9 +91,17 @@ const TimelineItem = ({ item, index }: { item: typeof experiences[0]; index: num
               {item.company}
             </p>
 
-            <p className="text-muted-foreground text-sm leading-relaxed">
-              {item.description}
-            </p>
+            {Array.isArray(item.description) ? (
+              <ul className="space-y-2 text-muted-foreground text-sm leading-relaxed list-disc pl-5">
+                {item.description.map((point, pointIndex) => (
+                  <li key={pointIndex}>{point}</li>
+                ))}
+              </ul>
+            ) : (
+              <p className="text-muted-foreground text-sm leading-relaxed">
+                {item.description}
+              </p>
+            )}
           </div>
 
           {/* Subtle accent line at the bottom that expands on hover */}
