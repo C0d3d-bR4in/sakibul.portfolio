@@ -36,15 +36,72 @@
   <style>
     body {
       font-family: system-ui, -apple-system, sans-serif;
-      max-width: 1100px;
+      max-width: 1200px;
       margin: 0 auto;
       padding: 2rem;
       line-height: 1.6;
-      color: #1f2937;
-      background:
-        radial-gradient(circle at top left, rgba(59, 130, 246, 0.08), transparent 28%),
-        radial-gradient(circle at top right, rgba(16, 185, 129, 0.08), transparent 24%),
-        #fff;
+      color: #333;
+      background: #fff;
+    }
+    .hero-section {
+      display: grid;
+      grid-template-columns: 260px minmax(0, 1fr);
+      gap: 1.75rem;
+      align-items: start;
+      margin-bottom: 2.5rem;
+    }
+    .hero-image {
+      width: 240px;
+      max-width: 100%;
+      height: auto;
+      border-radius: 16px;
+      display: block;
+      box-shadow: 0 12px 28px rgba(15, 23, 42, 0.12);
+    }
+    .hero-content {
+      display: grid;
+      gap: 1rem;
+      padding-top: 0.25rem;
+    }
+    .hero-heading {
+      margin: 0;
+      font-size: clamp(2rem, 3vw, 2.7rem);
+      line-height: 1.08;
+      color: #111827;
+    }
+    .hero-subtitle {
+      margin: 0;
+      color: #374151;
+      max-width: none;
+      width: 100%;
+      font-size: 1rem;
+    }
+    .bio-block {
+      padding: 1rem 1.1rem;
+      border-radius: 18px;
+      border: 1px solid #e5e7eb;
+      background: #fafafa;
+    }
+    .bio-block h3 {
+      margin: 0 0 0.5rem;
+      font-size: 0.95rem;
+      color: #111827;
+    }
+    .bio-block p,
+    .bio-block ul {
+      margin: 0;
+      color: #374151;
+    }
+    .bio-block ul {
+      list-style: disc;
+      padding-left: 1.2rem;
+    }
+    .bio-block li + li {
+      margin-top: 0.4rem;
+    }
+    .bio-stack {
+      display: grid;
+      gap: 0.9rem;
     }
     h1 { color: #0f172a; }
     h2, h3, h4 { color: #0f172a; }
@@ -57,8 +114,8 @@
     }
     .project-video-gallery {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-      gap: 1.35rem;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 0.5rem;
       margin-top: 1.25rem;
     }
     .project-video-card {
@@ -96,7 +153,7 @@
       background: #0f172a;
     }
     .project-video-body {
-      padding: 1rem 1.05rem 1.15rem;
+      padding: 0.9rem 0.95rem 1rem;
     }
     .project-video-kicker {
       display: inline-flex;
@@ -124,9 +181,21 @@
       color: #4b5563;
     }
     .video-credit {
-      margin-top: 0.85rem;
+      margin-top: 0.7rem;
       font-size: 0.85rem;
       color: #64748b;
+    }
+    @media (max-width: 980px) {
+      .project-video-gallery {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 0.65rem;
+      }
+    }
+    @media (max-width: 640px) {
+      .project-video-gallery {
+        grid-template-columns: 1fr;
+        gap: 0.9rem;
+      }
     }
     ul { list-style: none; padding: 0; }
     li { margin-bottom: 0.5rem; }
@@ -136,22 +205,28 @@
 </head>
 
 <body>
-  <header>
-    <h1>MD. Sakibul Islam Sheikh</h1>
-
-    <!-- Added for Google photo indexing -->
+  <header class="hero-section">
     <img
+      class="hero-image"
       src="/ss.jpeg"
-      alt="MD. Sakibul Islam Sheikh (C0d3d-bR4in)"
+      alt="MD. Sakibul Islam Sheikh (C0d3dBr4in)"
       loading="eager"
       width="240"
-      height="240"
-      style="border-radius: 16px; margin-bottom: 1rem; max-width: 100%; height: auto;"
+      height="300"
     />
 
-    <p><strong>Alias:</strong> C0d3d-bR4in</p>
-    <p><strong>Profession:</strong> Full Stack Web Developer & Security Researcher</p>
-    <p><strong>Location:</strong> Savar, Dhaka, Bangladesh</p>
+    <div class="hero-content">
+      <h1 class="hero-heading">MD. Sakibul Islam Sheikh</h1>
+      <p class="hero-subtitle">Hello, I am MD Sakibul Islam Sheikh, a Full Stack Web Developer and Security Researcher based in Savar, Bangladesh. Operating under the digital alias C0d3dBr4in, I specialize in building secure, scalable web and mobile applications. I am a proud alumnus of Manarat International University.</p>
+
+      <div class="bio-stack">
+        <article class="bio-block">
+          <h3>Research & Academic Work</h3>
+          <p>My core research interests lie at the intersection of cybersecurity and decentralized technologies. I have authored an academic thesis and submitted a journal manuscript regarding a blockchain and cryptography-based digital identity verification framework designed for digital services in Bangladesh. Furthermore, I have conducted technical research on implementing blockchain mechanisms to counteract election engineering.</p>
+        </article>
+
+      </div>
+    </div>
   </header>
 
   <section class="hidden-sitemap">
