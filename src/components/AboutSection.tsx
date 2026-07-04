@@ -33,7 +33,7 @@ const AboutSection = () => {
             </div>
 
             {/* Stats */}
-            <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
+            <div className="flex flex-row gap-4 overflow-x-auto pb-2 sm:grid sm:grid-cols-3 sm:overflow-visible sm:pb-0">
               {stats.map(({ icon: Icon, label, value }) => (
                 <div key={label} className="text-center p-6 rounded-2xl bg-secondary/30 border border-border/30 hover:bg-primary/10 hover:border-primary/30 transition-all group shadow-sm bg-blend-overlay">
                   <Icon className="w-6 h-6 mx-auto mb-3 text-foreground/50 group-hover:text-primary transition-colors duration-300" />

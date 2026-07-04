@@ -34,9 +34,100 @@
 
   <!-- SEO Sitemap Schema -->
   <style>
-    body { font-family: system-ui, -apple-system, sans-serif; max-width: 800px; margin: 0 auto; padding: 2rem; line-height: 1.6; color: #333; }
-    h1 { color: #111; }
-    .hidden-sitemap { font-size: 0.9rem; color: #555; }
+    body {
+      font-family: system-ui, -apple-system, sans-serif;
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 2rem;
+      line-height: 1.6;
+      color: #1f2937;
+      background:
+        radial-gradient(circle at top left, rgba(59, 130, 246, 0.08), transparent 28%),
+        radial-gradient(circle at top right, rgba(16, 185, 129, 0.08), transparent 24%),
+        #fff;
+    }
+    h1 { color: #0f172a; }
+    h2, h3, h4 { color: #0f172a; }
+    .hidden-sitemap { font-size: 0.95rem; color: #4b5563; }
+    .hidden-sitemap > h2 { margin-bottom: 0.35rem; }
+    .gallery-intro {
+      max-width: 72ch;
+      margin: 0.25rem 0 1rem;
+      color: #4b5563;
+    }
+    .project-video-gallery {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 1.35rem;
+      margin-top: 1.25rem;
+    }
+    .project-video-card {
+      overflow: hidden;
+      border: 1px solid rgba(148, 163, 184, 0.35);
+      border-radius: 24px;
+      background: linear-gradient(180deg, rgba(255,255,255,0.98), rgba(248,250,252,0.92));
+      box-shadow: 0 18px 45px rgba(15, 23, 42, 0.08);
+      transition: transform 180ms ease, box-shadow 180ms ease, border-color 180ms ease;
+    }
+    .project-video-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 24px 55px rgba(15, 23, 42, 0.14);
+      border-color: rgba(59, 130, 246, 0.3);
+    }
+    .project-video-media {
+      position: relative;
+      aspect-ratio: 16 / 9;
+      background: linear-gradient(135deg, #0f172a, #1e293b);
+    }
+    .project-video-media::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(180deg, rgba(15,23,42,0) 35%, rgba(15,23,42,0.18) 100%);
+      pointer-events: none;
+    }
+    .project-video-card video {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      background: #0f172a;
+    }
+    .project-video-body {
+      padding: 1rem 1.05rem 1.15rem;
+    }
+    .project-video-kicker {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      margin-bottom: 0.65rem;
+      padding: 0.32rem 0.65rem;
+      border-radius: 999px;
+      background: rgba(37, 99, 235, 0.08);
+      color: #1d4ed8;
+      font-size: 0.78rem;
+      font-weight: 700;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+    }
+    .project-video-card h4 {
+      margin: 0 0 0.35rem;
+      color: #0f172a;
+      font-size: 1.08rem;
+      line-height: 1.25;
+    }
+    .project-video-card p {
+      margin: 0;
+      font-size: 0.95rem;
+      color: #4b5563;
+    }
+    .video-credit {
+      margin-top: 0.85rem;
+      font-size: 0.85rem;
+      color: #64748b;
+    }
     ul { list-style: none; padding: 0; }
     li { margin-bottom: 0.5rem; }
     a { color: #0066cc; text-decoration: none; }
@@ -123,6 +214,108 @@
         <a href="https://github.com/C0d3d-bR4in/Chatbot-Frontend">[Source Code]</a>
       </li>
     </ul>
+
+    <h3>Project Video Gallery</h3>
+    <p class="gallery-intro">All available project videos are listed below with their real project names, thumbnail posters, and short descriptions to make the gallery more useful for both visitors and search engines.</p>
+    <div class="project-video-gallery">
+      <figure class="project-video-card">
+        <div class="project-video-media">
+          <video controls preload="metadata" playsinline poster="/images/project-1-thumb.png" aria-label="Gaming and Digital Product Topup project video">
+            <source src="/videos/project-1.webm" type="video/webm" />
+          </video>
+        </div>
+        <figcaption class="project-video-body">
+          <span class="project-video-kicker">Project Video 01</span>
+          <h4>Gaming & Digital Product Topup</h4>
+          <p>A full-stack e-commerce solution with real-time inventory, Stripe payments, and an admin dashboard.</p>
+          <div class="video-credit">Stack: React, Node.js, Supabase, TypeScript, Vite, Bkash API.</div>
+        </figcaption>
+      </figure>
+
+      <figure class="project-video-card">
+        <div class="project-video-media">
+          <video controls preload="metadata" playsinline poster="/images/project-2-thumb.png" aria-label="Elysvo Fashion E-commerce project video">
+            <source src="/videos/project-2.webm" type="video/webm" />
+          </video>
+        </div>
+        <figcaption class="project-video-body">
+          <span class="project-video-kicker">Project Video 02</span>
+          <h4>Elysvo Fashion E-commerce</h4>
+          <p>A full-stack WooCommerce solution with real-time inventory, Bkash payment gateway, and WP admin dashboard.</p>
+          <div class="video-credit">Stack: WordPress, WooCommerce, Elementor, WPBakery Page Builder.</div>
+        </figcaption>
+      </figure>
+
+      <figure class="project-video-card">
+        <div class="project-video-media">
+          <video controls preload="metadata" playsinline poster="/images/project-3-thumb.png" aria-label="CipherVault project video">
+            <source src="/videos/project-3.webm" type="video/webm" />
+          </video>
+        </div>
+        <figcaption class="project-video-body">
+          <span class="project-video-kicker">Project Video 03</span>
+          <h4>CipherVault</h4>
+          <p>A privacy-first encryption toolkit with steganography, multi-layer encryption, encrypted note storage, and dual-container vaults.</p>
+          <div class="video-credit">Stack: React, Vite, TypeScript, shadcn-ui, Tailwind CSS.</div>
+        </figcaption>
+      </figure>
+
+      <figure class="project-video-card">
+        <div class="project-video-media">
+          <video controls preload="metadata" playsinline poster="/images/project-4-thumb.png" aria-label="Stream24 IPTV Streaming Platform project video">
+            <source src="/videos/project-4.webm" type="video/webm" />
+          </video>
+        </div>
+        <figcaption class="project-video-body">
+          <span class="project-video-kicker">Project Video 04</span>
+          <h4>Stream24.xyz IPTV Streaming Platform</h4>
+          <p>A high-performance IPTV streaming platform delivering 4000+ live channels with a clean, real-time interface.</p>
+          <div class="video-credit">Stack: Next.js, TypeScript, React, shadcn-ui, Tailwind CSS, Firebase.</div>
+        </figcaption>
+      </figure>
+
+      <figure class="project-video-card">
+        <div class="project-video-media">
+          <video controls preload="metadata" playsinline poster="/images/project-5-thumb.png" aria-label="RareMart gadgets selling e-commerce project video">
+            <source src="/videos/RareMart.mp4" type="video/mp4" />
+          </video>
+        </div>
+        <figcaption class="project-video-body">
+          <span class="project-video-kicker">Project Video 05</span>
+          <h4>RareMart Gadgets selling E-commerce</h4>
+          <p>Gadgets selling e-commerce with auto-reply assistant and chatbot support for customer engagement.</p>
+          <div class="video-credit">Stack: WordPress, WooCommerce, Elementor, PHP, MySQL, Bootstrap.</div>
+        </figcaption>
+      </figure>
+
+      <figure class="project-video-card">
+        <div class="project-video-media">
+          <video controls preload="metadata" playsinline poster="/images/toptime.png" aria-label="TopTime Watch Selling E-commerce project video">
+            <source src="/videos/Toptime.mp4" type="video/mp4" />
+          </video>
+        </div>
+        <figcaption class="project-video-body">
+          <span class="project-video-kicker">Project Video 06</span>
+          <h4>TopTime Watch Sellling E-commerce</h4>
+          <p>A full-stack e-commerce solution with real-time inventory, Bkash payments, and a WordPress admin dashboard.</p>
+          <div class="video-credit">Stack: WordPress, WooCommerce, MySQL, Elementor, Bootstrap.</div>
+        </figcaption>
+      </figure>
+
+      <figure class="project-video-card">
+        <div class="project-video-media">
+          <video controls preload="metadata" playsinline poster="/images/chatbot.jpg" aria-label="RareMart auto reply assistant and chatbot project video">
+            <source src="/videos/chatbot.mp4" type="video/mp4" />
+          </video>
+        </div>
+        <figcaption class="project-video-body">
+          <span class="project-video-kicker">Project Video 07</span>
+          <h4>RareMart auto Reply Assistant & Chatbot</h4>
+          <p>A chatbot and auto-reply assistant for e-commerce, designed to enhance customer support and engagement through automated responses.</p>
+          <div class="video-credit">Stack: Node.js, React, Next.js, Supabase, Tailwind CSS.</div>
+        </figcaption>
+      </figure>
+    </div>
 
     <h3>Main Pages</h3>
     <ul>
